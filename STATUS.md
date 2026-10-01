@@ -1,8 +1,10 @@
 # Status do projeto
 
-- **Cliente:** Thórus Engenharia Ltda.
-- **Projeto:** Sistema de Gestão de Projetos
-- **Fase atual:** Fase 1 — MVP manual com banco e interface
-- **Situação:** materiais da Fase 1 preparados para revisão com a Thórus
-- **Comportamento nesta fase:** cadastros e atualizações manuais; integrações Asana/Drive ainda não conectadas
-- **Próximo passo:** validar perguntas P1–P10, papéis e fluxo manual do MVP. A conexão Asana/Drive está planejada para a Fase 2.
+**Data:** 01/10/2026<br>
+**Estado:** planejamento da Fase 1 consolidado para revisão com a Thórus.
+
+A Fase 1 especifica MVP interno operável manualmente, com banco de dados, interface, permissões e preparação de contratos externos. Não inicia chamadas a APIs Asana/Drive. As decisões P1–P10 e demais dependências estão registradas no escopo e questionário; o aceite de planejamento não equivale ao início da implementação.
+
+- Tasks da fase: [04_fase-atual/fase.md](04_fase-atual/fase.md)
+- SPECs: [04_fase-atual/specs/00-INDICE.md](04_fase-atual/specs/00-INDICE.md)
+- Rastreabilidade: [04_fase-atual/matriz-de-rastreabilidade.md](04_fase-atual/matriz-de-rastreabilidade.md)

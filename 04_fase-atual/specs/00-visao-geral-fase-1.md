@@ -102,7 +102,7 @@ IDs internos são estáveis; relacionamentos usam FKs; campos frequentemente fil
 
 ## Perguntas de validação do cliente
 
-Consulte P1, P2, P5, P8, P9 e P10 no [questionário de levantamento](../05-Levantamento/06-Questionario-levantamento-cliente.md). Em Fase 1, as perguntas de APIs servem para preparar o contrato e planejar a Fase 2; não autorizam conexão agora.
+Consulte P1, P2, P5, P8, P9 e P10 no [questionário de levantamento](../../03_documentos/06-Questionario-levantamento-cliente.md). Em Fase 1, as perguntas de APIs servem para preparar o contrato e planejar a Fase 2; não autorizam conexão agora.
 
 ## SPECs detalhadas
 

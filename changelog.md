@@ -1,8 +1,7 @@
-# Histórico de alterações
+# Changelog
 
 ## 2026-10-01
 
-- Criado pacote do cliente no repositório local a partir do escopo, SPECs e tasks atuais da Fase 1.
-- Incorporada a definição da Fase 1 como MVP manual com banco e interface; integrações Asana/Drive deslocadas para a Fase 2.
-- Incluídos questionário P1–P10, modelo de ata e rascunho da ata da consultoria.
-- Mantido o rascunho da ata identificado como rascunho porque a data da reunião ainda precisa ser confirmada.
+- Corrigida a estrutura do pacote para o padrão de pasta de cliente do plugin Adapta.
+- SPECs e tasks da Fase 1 alinhadas ao contrato do plugin e às quatro projeções de tasks.
+- Fase 1 definida como interface e banco utilizáveis manualmente; integrações Asana/Drive preparadas e adiadas para Fase 2.
