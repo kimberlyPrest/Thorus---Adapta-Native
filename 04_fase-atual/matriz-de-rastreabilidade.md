@@ -1,17 +1,25 @@
-# Matriz de rastreabilidade — Fase 1
+# Matriz de rastreabilidade — Fase 1 vertical
 
 | Requisito | Resultado verificável | SPEC | Tasks | Prova/aceite | Estado |
 |---|---|---|---|---|---|
-| F1-R01 Acesso interno restrito | Usuários entram; papel e atribuição controlam lista, detalhe e gravação | F1.1 | F1-02,F1-04,F1-08 | Matriz de acesso e testes permitidos/negados | Planejada; depende B3/P8 |
-| F1-R02 Persistência manual | Projeto e registros manuais sobrevivem a logout/novo login | F1.2 | F1-03,F1-15,F1-10 | Dicionário, migration/integration e restore | Planejada; engine da aplicação a confirmar |
-| F1-R03 Navegação interna completa | Sidebar e todas as páginas/abas da SPEC acessíveis | F1.3 | F1-05 | Roteiro por página/papel, teclado e viewport | Planejada |
-| F1-R04 Carteira/projetos | Busca/filtro/CRUD respeita acesso e dashboard reflete registros | F1.3 | F1-01,F1-06 | CRUD, filtros e contadores ligados | Planejada |
-| F1-R05 Tarefas/fases | CRUD manual com prazo, estado, responsável e fase | F1.3 | F1-07 | Cenários concluída/vencida/sem prazo | Planejada; listas iniciais a confirmar |
-| F1-R06 Definições versionadas | Alteração aprovada atualiza vigente sem apagar versão antiga | F1.3 | F1-11 | Comparação de versões e decisão auditada | Planejada; depende P9 |
-| F1-R07 Eventos legais | Evento estruturado guarda status/responsável/evidência/histórico | F1.3 | F1-12 | Cenário por estado/tipo aprovado | Planejada; depende P5 |
-| F1-R08 Referências e atividade | URL manual e atividade são consultáveis; nenhum upload F1 | F1.3 | F1-13 | Leitura do registro e trilha de autoria | Planejada |
-| F1-R09 Operação administrativa e UX | Admin mantém usuários/listas; erro/auditoria é compreensível | F1.1,F1.3,F1.4 | F1-08,F1-14,F1-16 | Teste papel/estados e log redigido | Planejada; depende P8 |
-| F1-R10 Integração preparada, desligada | IDs/mapeamentos existem sem credencial, rede ou sincronização | F1.2,F1.4 | F1-09 | Esquema de mapeamento e inspeção de tráfego zero | Planejada; Asana/Drive na Fase 2 |
-| F1-R11 Aceite MVP manual | Um projeto percorre fluxos, logout/login e restore sem serviço externo | F1.2,F1.3,F1.4 | F1-10 | Demo Thórus e relatório de backup/restore | Planejada |
+| R-F1-01 — Layout, sidebar e navegação aplicada | Admin e CS recebem menu correspondente; largura/foco/área de toque seguem D1/D2. | [SPEC-1-001](specs/spec-01-layout-navegacao.md) | F1-05, F1-16 | SPEC-1-001-CA-01, SPEC-1-001-CA-02 | Planejada |
+| R-F1-02 — Entrada, sessão e saída do usuário | Conta ativa/vinculada entra; desconhecida/inativa não retorna dados. | [SPEC-1-002](specs/spec-02-entrada-sessao.md) | F1-04, F1-17 | SPEC-1-002-CA-01, SPEC-1-002-CA-02 | Planejada |
+| R-F1-03 — Administração de usuários pela interface | Novo usuário aparece como pending com perfil e projetos persistidos; segundo submit não duplica. | [SPEC-1-003](specs/spec-03-admin-usuarios.md) | F1-14, F1-18 | SPEC-1-003-CA-01, SPEC-1-003-CA-02 | Planejada |
+| R-F1-04 — Administração de funções e níveis de permissão | Admin edita por função/escopo e preview representa o delta que será persistido. | [SPEC-1-004](specs/spec-04-admin-permissoes.md) | F1-02, F1-19 | SPEC-1-004-CA-01, SPEC-1-004-CA-02 | Planejada |
+| R-F1-05 — Listas operacionais editáveis pelo Admin | Criar, renomear, reordenar e desativar pelo Admin é persistido e consumido pelos formulários. | [SPEC-1-005](specs/spec-05-admin-listas.md) | F1-20, F1-21 | SPEC-1-005-CA-01, SPEC-1-005-CA-02 | Planejada |
+| R-F1-06 — Carteira: busca, filtros e paginação | Consulta, total, filtros e próxima data representam apenas os projetos autorizados. | [SPEC-1-006](specs/spec-06-carteira-projetos.md) | F1-06, F1-22 | SPEC-1-006-CA-01, SPEC-1-006-CA-02 | Planejada |
+| R-F1-07 — Novo e editar projeto com cliente e salvamento | Nome/cliente suficientes para criar projeto e abrir detalhe persistido com creator membership. | [SPEC-1-007](specs/spec-07-cadastro-projeto.md) | F1-01, F1-03, F1-15, F1-23 | SPEC-1-007-CA-01, SPEC-1-007-CA-02, SPEC-1-007-CA-03, SPEC-1-007-CA-03 | Planejada |
+| R-F1-08 — Visão geral, equipe e arquivamento do projeto | Resumo/header/equipe refletem os dados persistidos e não mostram recursos sem read. | [SPEC-1-008](specs/spec-08-projeto-visao-equipe.md) | F1-24, F1-37 | SPEC-1-008-CA-01, SPEC-1-008-CA-02 | Planejada |
+| R-F1-09 — Aba Tarefas e fases: registrar e acompanhar trabalho | Tarefa e fase persistem; responsável e filtro usam somente dados do projeto. | [SPEC-1-009](specs/spec-09-tarefas-fases.md) | F1-07, F1-25 | SPEC-1-009-CA-01, SPEC-1-009-CA-02 | Planejada |
+| R-F1-10 — Aba Definições: vigente e histórico por disciplina | Registro inicial gera v1 única e é restrito ao aprovador designado. | [SPEC-1-010](specs/spec-10-definicoes-vigentes.md) | F1-26, F1-36 | SPEC-1-010-CA-01, SPEC-1-010-CA-02 | Planejada |
+| R-F1-11 — Solicitar, revisar e decidir alteração técnica | Rascunho e envio mantêm versão-base, campos e autoria; vigente não muda no submit. | [SPEC-1-011](specs/spec-11-alteracoes-decisoes.md) | F1-11, F1-27 | SPEC-1-011-CA-01, SPEC-1-011-CA-02 | Planejada |
+| R-F1-12 — Aba Legais e marcos com evidências e confirmação | Evento completo persiste e filtros retornam seu tipo/status/data corretos. | [SPEC-1-012](specs/spec-12-legais-marcos.md) | F1-12, F1-28 | SPEC-1-012-CA-01, SPEC-1-012-CA-02 | Planejada |
+| R-F1-13 — Aba Documentos: referências manuais e organização | Referência aparece persistida com nome/categoria/domínio/autoria e abre por clique. | [SPEC-1-013](specs/spec-13-documentos-referencias.md) | F1-13, F1-29 | SPEC-1-013-CA-01, SPEC-1-013-CA-02 | Planejada |
+| R-F1-14 — Aba Atividade: linha do tempo e detalhes da mudança | Timeline traduz ação/ator/data e filtros retornam os eventos autorizados. | [SPEC-1-014](specs/spec-14-atividade-auditoria.md) | F1-08, F1-30 | SPEC-1-014-CA-01, SPEC-1-014-CA-02 | Planejada |
+| R-F1-15 — Dashboard acionável com métricas e detalhes | Cards e distribuições usam fórmulas/date/permissões definidos, sem projeto B oculto. | [SPEC-1-015](specs/spec-15-dashboard.md) | F1-31, F1-32 | SPEC-1-015-CA-01, SPEC-1-015-CA-02 | Planejada |
+| R-F1-16 — Administração de mapeamentos preparados para Fase 2 | Mapeamento/vínculo persistem com revisão/IDs opcionais sem bloquear uso manual. | [SPEC-1-016](specs/spec-16-admin-integracoes-planejadas.md) | F1-09, F1-33 | SPEC-1-016-CA-01, SPEC-1-016-CA-02 | Planejada |
+| R-F1-17 — Piloto manual, persistência e recuperação comprovados | Equipe demonstra cada rota e persiste os dados após nova sessão conforme sua permissão. | [SPEC-1-017](specs/spec-17-piloto-recuperacao.md) | F1-10, F1-34, F1-35 | SPEC-1-017-CA-01, SPEC-1-017-CA-02, SPEC-1-017-CA-03 | Planejada |
 
-| F1-R12 Estados e acessibilidade de interface | Erro, vazio, sucesso, validação e teclado demonstráveis | F1.3 | F1-16 | Matriz de estado por tela e viewport | Planejada |
+| R-F1-UX — Sistema visual | Todas as rotas seguem tokens D1–D5, estados, responsividade, teclado e critérios de rota | Contrato D1–D5 + SPECs 001–017 | Todas tasks de entrega de tela | Evidências de viewport/teclado associadas a cada CA | Planejada |
+| R-F1-DB — Integridade compartilhada | Cada incremento persiste de forma transacional e restaura estado válido C2/C3 | Contrato C1–C5 + SPECs 002–017 | Todas tasks de persistência e atividade | Migrations, requests, reread, rollback e restore isolado por CA | Planejada |
+| R-F1-AUTH — Controle de função | Toda leitura/mutação verifica sessão, ação e escopo no servidor | SPECs 002–004 + C4 | F1-02,F1-04,F1-17,F1-19,F1-24,F1-37 | SPEC-1-004-CA-01, SPEC-1-002-CA-01, SPEC-1-002-CA-02, SPEC-1-004-CA-02, SPEC-1-008-CA-01, SPEC-1-008-CA-02 | Planejada |

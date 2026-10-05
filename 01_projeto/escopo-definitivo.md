@@ -1,7 +1,7 @@
 # Escopo definitivo — Sistema de Gestão Integrada de Projetos Thórus
 
 **Cliente:** Thórus Engenharia Ltda.<br>
-**Versão:** 1.0 · 01/10/2026<br>
+**Versão:** 1.1 · 05/10/2026<br>
 **Base:** escopo e mapeamento existentes do workspace; conversa de consultoria transcrita; captura enviada sobre notas do Gemini; modelo de ata da Thórus.<br>
 **Estado:** escopo consolidado para orientar desenho e execução. Itens marcados como “a confirmar” não devem ser automatizados até validação com a Thórus.
 
@@ -108,7 +108,7 @@ O mapeamento exato de usuários, grupos, visibilidade por empresa cliente e resp
 - Dashboard mostra contagens por fase/situação, tarefas vencidas/próximas, alterações aguardando validação, eventos legais recentes e atividade. Cada indicador abre a carteira já filtrada.
 - Formulários permitem CRUD manual conforme papel para projetos, tarefas, fases, definições/versionamento, eventos legais e referências de documentos. Arquivamento preserva histórico; decisões/definições têm autor, data, estado e versão.
 - Banco relacional armazena usuários/papéis/atribuições, clientes, projetos, fases/status, tarefas, definições e versões, eventos legais, referências documentais, auditoria, IDs externos opcionais e mapeamentos preparados.
-- UI em português, responsiva, com busca/filtros/paginação, breadcrumb, estados vazio/erro/carregamento/sucesso, validação no servidor, confirmação de ações críticas, teclado/foco acessíveis e datas locais. Detalhamento: [SPEC F1.3 — Interface e operação manual](../04_fase-atual/specs/spec-03-carteira-projetos.md).
+- UI em português, responsiva, com busca/filtros/paginação, breadcrumb, estados vazio/erro/carregamento/sucesso, validação no servidor, confirmação de ações críticas, teclado/foco acessíveis e datas locais. Detalhamento por rota e fluxo: [índice das 17 SPECs verticais da Fase 1](../04_fase-atual/specs/00-INDICE.md). As rotas de shell, sessão, administração de usuários/permissões/listas, carteira e detalhe do projeto, tarefas, definições/alterações, legais, documentos, atividade, dashboard, mapeamentos preparados e piloto têm critérios de interface, dados, autorização, persistência e aceite próprios.
 - Referências documentais aceitam nome/categoria/URL manual; Fase 1 não cria pastas, faz upload/download ou valida ACL no Drive.
 - Não há chamada de rede para Asana, Drive, Calendar/Gemini ou WhatsApp, botão de conexão, pedido de token nem automação externa na Fase 1.
 

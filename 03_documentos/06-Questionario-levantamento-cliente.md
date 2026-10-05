@@ -31,7 +31,7 @@ Para cada dado, marque uma opção ou escreva “varia por campo”:
 | Tarefas, entregas e marcos legais | ☐ | ☐ | __________ |
 | Resumo e escopo contratado | ☐ | ☐ | __________ |
 
-**Para começar, concorda que a Fase 1 apenas leia o Asana, sem alterar nada?** ☐ Sim ☐ Não ☐ Quero conversar.
+**Na Fase 1, vamos operar manualmente no novo sistema, sem conectar ao Asana. A integração será avaliada na Fase 2. Está de acordo?** ☐ Sim ☐ Não ☐ Quero conversar.
 
 Se algum campo já deve ser atualizado em outro lugar, diga qual e onde: _______________________.
 

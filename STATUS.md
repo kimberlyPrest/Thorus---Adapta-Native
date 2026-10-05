@@ -1,10 +1,12 @@
 # Status do projeto
 
-**Data:** 01/10/2026<br>
-**Estado:** planejamento da Fase 1 consolidado para revisão com a Thórus.
+**Data:** 05/10/2026<br>
+**Estado:** planejamento da Fase 1 revisado em 17 SPECs verticais e 37 tasks vinculadas; pronto para revisão com a Thórus.
 
-A Fase 1 especifica MVP interno operável manualmente, com banco de dados, interface, permissões e preparação de contratos externos. Não inicia chamadas a APIs Asana/Drive. As decisões P1–P10 e demais dependências estão registradas no escopo e questionário; o aceite de planejamento não equivale ao início da implementação.
+A Fase 1 entrega interface, banco e operação manual. Integrações de negócio ficam desligadas e passam à Fase 2. P1–P10 estão vinculadas às SPECs que dependem dessas respostas. As respostas de cliente continuam pendentes; B1 (runtime/banco/test runner) e B3 (autenticação corporativa) também precisam ser decididos antes das respectivas implementações.
 
-- Tasks da fase: [04_fase-atual/fase.md](04_fase-atual/fase.md)
-- SPECs: [04_fase-atual/specs/00-INDICE.md](04_fase-atual/specs/00-INDICE.md)
-- Rastreabilidade: [04_fase-atual/matriz-de-rastreabilidade.md](04_fase-atual/matriz-de-rastreabilidade.md)
+- [Escopo definitivo](01_projeto/escopo-definitivo.md)
+- [Tasks da fase](04_fase-atual/fase.md)
+- [SPECs verticais e contratos](04_fase-atual/specs/00-INDICE.md)
+- [Matriz de rastreabilidade](04_fase-atual/matriz-de-rastreabilidade.md)
+- [Questionário P1–P10](03_documentos/06-Questionario-levantamento-cliente.md)
