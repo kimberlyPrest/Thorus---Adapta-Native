@@ -1,6 +1,6 @@
 # Índice de SPECs — Fase 1 vertical
 
-**Resultado da fase:** MVP interno manual com banco relacional e interface utilizáveis para operar projeto, equipe, tarefa, alteração técnica, evento legal e referência documental.
+**Resultado da fase:** MVP interno manual para operar projetos, registrar e atender solicitações, enviar referências autorizadas manualmente, preparar atualizações revisadas e centralizar alterações técnicas.
 
 As SPECs a seguir são fatias verticais: cada uma entrega tela/rota, dados, validação no servidor, grants, estados, auditoria e prova da própria ação. As decisões visuais e de dados compartilhadas estão nos dois contratos comuns. Cada página só é aceita quando a interface, a persistência e a autorização no servidor funcionam em conjunto.
 
@@ -33,10 +33,13 @@ As SPECs a seguir são fatias verticais: cada uma entrega tela/rota, dados, vali
 | [SPEC-1-016 — Administração de mapeamentos preparados para Fase 2](spec-16-admin-integracoes-planejadas.md) | `/configuracoes/integracoes` | Recarrega tela e comprova enabled=false e ausência de chamada ao serviço externo. |
 | [SPEC-1-017 — Piloto manual, persistência e recuperação comprovados](spec-17-piloto-recuperacao.md) | `Roteiro das rotas entregues + ambiente isolado de backup` | Backup/restaurar no ambiente isolado e comparar relações/versões/contagens; colher aceite humano da fase. |
 
+| [SPEC-1-018 — Solicitações de clientes e envio manual de documentos](spec-18-solicitacoes-e-envio-documentos.md) | `/solicitacoes` | Equipe registra pedido, confirma autorização no Drive e documenta atendimento manual. |
+| [SPEC-1-019 — Atualizações manuais ao cliente](spec-19-atualizacoes-manuais-cliente.md) | `/projetos/{id}/comunicacoes` | Evento aprovado gera rascunho revisado, enviado fora do sistema e registrado manualmente. |
+
 ## Ordem de dependência
 
 1. D1–D5 e C1–C5 são decisões comuns. Engenharia identifica runtime/banco/test runner B1 antes de executar a primeira task de código; Thórus confirma B3/P8 e as decisões P5/P9 antes de operar dados reais.
-2. Shell/sessão/Admin (001–005); banco/cadastro/carteira/equipe (006–008); tarefas, definições, pedidos, legais, documentos e atividade (009–014); dashboard e preparo externo desligado (015–016).
+2. Shell/sessão/Admin (001–005); banco/cadastro/carteira/equipe (006–008); tarefas, definições, pedidos, legais, documentos e atividade (009–014); dashboard e preparo externo desligado (015–016 e 018–019).
 3. Piloto e backup isolado (017) depois das rotas manuais.
 
 **Limites:** Asana/Drive/Gemini/WhatsApp de negócio não recebem chamadas nem sincronizam na Fase 1. Endpoints `/api` descritos são contrato local da aplicação; a implementação confirma o binding específico após B1, sem mudar campos, autorização, erro e critérios sem emenda.

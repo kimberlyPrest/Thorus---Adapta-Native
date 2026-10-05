@@ -24,12 +24,14 @@ Banco da aplicação é fonte de verdade do MVP manual. IDs são UUID; datas de 
 | tasks | id, project_id, phase_id opcional mesmo projeto, title 2–200, description ≤4000, assignee_id opcional membro ativo, priority_option_id opcional, due_date DATE opcional, state todo/in_progress/done, completed_at opcional; done exige completed_at do servidor |
 | technical_definitions | id, project_id, discipline_option_id, key 1–80, label 2–160, current_version_id FK; UNIQUE(project_id,discipline_option_id,key normalizada) |
 | definition_versions | id, definition_id, number positivo UNIQUE(definition_id,number), value ≤4000, observation ≤2000, decided_by, decided_at, request_id opcional; imutável; uma vigente via ponteiro current_version_id, não múltiplos flags concorrentes |
-| change_requests | id, definition_id, base_version_id FK, proposed_value 1–4000, reason 1–2000, impact_note opcional ≤2000, origin manual/meeting_reference/client_request, source_url opcional, state draft/pending/approved/rejected/cancelled, requested_by, decided_by/at/note opcionais, version; proposta sempre ligada à versão-base |
+| change_requests | id, definition_id, base_version_id FK, proposed_value 1–4000, reason 1–2000, impact_note opcional ≤2000, origin manual/meeting_reference/client_request, source_channel whatsapp/email/meeting/phone/in_person opcional, source_url opcional, state draft/pending/approved/rejected/cancelled, requested_by, decided_by/at/note opcionais, version; proposta sempre ligada à versão-base |
 | legal_events | id, project_id, type_option_id, status_option_id, responsible_id membro ativo, event_date DATE, protocol opcional ≤100, note ≤4000, evidence_url opcional ≤2048; confirmações via flag confirmed_by/confirmed_at; atualizar fato confirmado invalida confirmação |
 | document_references | id, project_id, name 2–200, category_option_id opcional, url HTTP(S) ≤2048, observation ≤2000, archived_at opcional, origin=manual; acesso interno herdado do projeto; sem binário |
 | activity_events | id, project_id opcional, actor_id, resource/action, target_id, occurred_at UTC, result, changed_field_names, safe_summary, correlation_id; append-only; não duplicar textos integrais de definição em log genérico |
 | external_links | id, project_id, system asana/drive, workspace_id opcional, resource_type, gid opcional, permalink opcional; UNIQUE(system,coalesce(workspace_id,''),resource_type,gid) para gid não nulo; escopo preparação |
 | integration_mappings | id, system, resource_type, external_field_key, internal_field_key, transform identity/text/enum_mapping/date, enum_map JSON se aplicável, revision, review_state draft/reviewed, enabled=false; sem segredo e sem execução |
+| client_requests | id, project_id, requester_contact_id/label opcionais, intake_channel whatsapp/email/phone/meeting/in_person, request_type info/document/technical_change/other, summary 1–2000 sem conversa integral, source_reference URL opcional, assignee_id, state new/in_progress/waiting_confirmation/waiting_customer/completed/cancelled, due_date DATE opcional, version e timestamps |
+| customer_updates | id, project_id, source_event_id, source_version, recipient_contact_id, channel whatsapp_manual, message_body 1–4000, state draft/review/approved_for_manual_send/manually_sent/cancelled, approved_by/at, manually_sent_by/at, version; uma atualização ativa por evento/contato/versão |
 | mutation_receipts | actor_id, action_key, request_id, payload_hash, response_data, created_at; UNIQUE(actor_id,action_key,request_id); retenção de 24h, sem incluir credenciais |
 
 Índices: projects por client/phase/status/archived; memberships por user/project; tasks por project/state/due_date/assignee; changes por state/definition; events por project/event_date; activity por project/occurred_at. FKs de histórico usam RESTRICT, nunca cascade que apague decisões. Campos de texto simples não aceitam HTML executável.
@@ -61,6 +63,8 @@ Um usuário tem um perfil ativo. A permissão efetiva exige conta ativa + access
 | admin_profiles | read/update (Admin fixo) |
 | admin_lists | read/update (Admin fixo) |
 | admin_mappings | read/update (Admin fixo) |
+| client_requests | read/create/update/assign/close (CS/assigned; Admin/all) |
+| customer_updates | read/create/update/review/record_manual_send (CS/assigned) |
 
 Permissão de escrever exige read do mesmo recurso e projects.read; se checkbox write for marcado, interface inclui read explicitamente no resumo antes de salvar. Create projeto não exige projeto prévio: se scope assigned, criador vira membro automaticamente. projects.create fica limitado a Admin/CS na base, sem exigir cliente real para demo.
 

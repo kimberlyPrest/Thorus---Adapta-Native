@@ -6,8 +6,8 @@
 
 - Desktop 1440 × 900 como referência; conteúdo com largura máxima 1440 px, padding 32 px e sidebar 240 px. Header de página: breadcrumb, título, descrição curta e uma ação primária alinhada à direita.
 - De 768 a 1023 px: sidebar recolhida de 72 px, ícones com nome acessível e tooltip acionável por foco; conteúdo com padding 24 px. Abaixo de 768 px: menu em drawer modal, header 56 px, padding 16 px, conteúdo em coluna única.
-- Sidebar global: Dashboard `/dashboard`, Projetos `/projetos`, Configurações (somente Admin). Submenu Admin: Usuários, Perfis e permissões, Listas e Integrações planejadas. Identidade e Sair ficam ao final.
-- Projeto: header persistente com código/nome, cliente, fase/situação e badge Arquivado quando aplicável. Abas: Visão geral, Tarefas e fases, Definições e alterações, Legais e marcos, Documentos, Atividade. Na aba Definições, navegação interna Vigentes / Solicitações. Abas usam links com URL própria e indicam a rota atual.
+- Sidebar global: Dashboard `/dashboard`, Projetos `/projetos`, Solicitações `/solicitacoes` (grant client_requests.read), Configurações (somente Admin). Submenu Admin: Usuários, Perfis e permissões, Listas e Integrações planejadas. Identidade e Sair ficam ao final.
+- Projeto: header persistente com código/nome, cliente, fase/situação e badge Arquivado quando aplicável. Abas: Visão geral, Tarefas e fases, Definições e alterações, Legais e marcos, Documentos, Atividade, Comunicações. Na aba Definições, navegação interna Vigentes / Solicitações. Abas usam links com URL própria e indicam a rota atual.
 - Recarregar URL ou usar voltar/avançar preserva aba, página e filtros via query string. Não abrir uma segunda sidebar para cada projeto. Menu colapsado e abas cabem por rolagem horizontal identificável; ações principais permanecem disponíveis.
 
 ## D2 — Tokens e componentes
@@ -54,3 +54,11 @@
 - Ocultar ações não autorizadas e exigir a mesma política no servidor. Acesso de leitura sem edição continua utilizável.
 - Integrações exibem “Planejada — Fase 2”. Referência externa abre em nova aba por clique manual. Nunca tratar URL salva como arquivo validado/compartilhado.
 - Rotas futuras sem implementação ficam ausentes do menu; uma rota entregue inclui leitura e mutação previstas, banco, autorização, auditoria e estados. Não liberar páginas com botões sem função.
+
+
+## D6 — Solicitações e atualizações manuais ao cliente
+
+- `/solicitacoes` é fila interna. Registrar pedido é ação principal; filtros por projeto/estado/origem; detalhe mantém resumo e histórico.
+- `/projetos/{id}/comunicacoes` só exibe eventos aprovados e rascunhos. Aviso fixo: “O texto é enviado manualmente fora do sistema”. Copiar não altera estado. Registro de envio requer confirmação de operador/destinatário.
+- Referências documentais exibem o link cadastrado e instrução para conferir no Drive se está liberado àquele contato. A aplicação não certifica ACL.
+- Não exibir portal do cliente, WhatsApp conectado, botão de envio API, estado “Entregue”, busca de conversas ou automação externa na Fase 1.

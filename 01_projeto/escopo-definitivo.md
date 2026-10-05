@@ -1,8 +1,8 @@
 # Escopo definitivo — Sistema de Gestão Integrada de Projetos Thórus
 
-**Cliente:** Thórus Engenharia Ltda.<br>
-**Versão:** 1.1 · 05/10/2026<br>
-**Base:** escopo e mapeamento existentes do workspace; conversa de consultoria transcrita; captura enviada sobre notas do Gemini; modelo de ata da Thórus.<br>
+**Cliente:** Thórus Engenharia Ltda.
+**Versão:** 1.2 · 05/10/2026
+**Base:** escopo e mapeamento existentes do workspace; conversa de consultoria transcrita; captura enviada sobre notas do Gemini; modelo de ata da Thórus.
 **Estado:** escopo consolidado para orientar desenho e execução. Itens marcados como “a confirmar” não devem ser automatizados até validação com a Thórus.
 
 ## 1. Resultado desejado
@@ -52,8 +52,8 @@ O mapeamento exato de usuários, grupos, visibilidade por empresa cliente e resp
 
 ### 4.2 Preparação e integração com Asana
 
-- **Fase 1:** incluir IDs externos opcionais, origem do registro, mapeamento versionado e interfaces/adapters para integração futura. A equipe pode manter o sistema integralmente pela interface manual. Não autenticar, chamar API, importar ou sincronizar Asana nesta fase.
-- **Fase 2:** após aceite do banco/MVP e validação de P1/P2, implementar leitura controlada dos projetos/tarefas/campos aprovados. Não assumir que custom fields, status e estrutura são iguais entre projetos.
+- **Fase 1:** incluir IDs externos opcionais, origem do registro, mapeamento versionado e contratos/adapters desligados. A equipe mantém o sistema pela interface manual, inclusive atendimento de pedidos, envio de atualizações revisadas e captura de alterações por canal. Não autenticar, chamar API, importar ou sincronizar Asana nesta fase.
+- **Fase 2:** após aceite do banco/MVP e validação de P1/P2, implementar leitura controlada dos projetos/tarefas/campos aprovados. A API permite consultar projetos, tarefas, seções e definições/valores de campos; a seleção de escopo e as permissões determinam o que será lido. Não assumir que custom fields, status e estrutura são iguais entre projetos. Acesso ao Asana será OAuth de aplicação, nunca PAT pessoal compartilhado.
 - A integração futura deve fazer upsert idempotente por GID, guardar origem e timestamps, paginar, expor divergências e encaminhar conflito com valor manual para revisão, sem sobrescrita silenciosa.
 - Somente leitura na primeira conexão real. Escrita de volta requer decisão posterior, campos autorizados e aprovação dos donos do processo.
 - Usar OAuth 2.0 com escopos mínimos, tokens no backend/secret manager, desconexão e revogação. Confirmar recursos, scopes, paginação e limites na [API oficial Asana](https://developers.asana.com/reference/rest-api-reference) antes de implementar. Webhooks/reconciliação ficam para a fase de confiabilidade, não para Fase 1.
@@ -85,14 +85,16 @@ O mapeamento exato de usuários, grupos, visibilidade por empresa cliente e resp
 
 - Registro estruturado de marcos por projeto: fase, entrega, postagem, protocolo, parecer, aprovação, exigência ou outro evento configurado.
 - Incluir responsável, data, estado, observação e evidência/link; controlar histórico de mudanças.
-- A comunicação ao cliente só pode ser disparada a partir de evento aprovado e modelo validado, com log do conteúdo, canal, destinatário e resultado.
+- A comunicação ao cliente só pode ocorrer a partir de evento aprovado e modelo validado, com revisão humana, registro do conteúdo, canal, destinatário e resultado. Na Fase 1 o envio é manual; na Fase 2 poderá ser assistido por integração, sem envio autônomo.
 - Regras de prazo, nomes oficiais dos marcos e quem tem autoridade para registrar/aprovar precisam ser confirmados no piloto.
 
 ### 4.7 Comunicação e agente de atendimento
 
 - Alertas internos no sistema/e-mail conforme preferência e regras aprovadas.
 - Relatório de status: escopo inicial considera automatizar a compilação dos dados oficiais e preparar o relatório. A periodicidade aparece quinzenal no escopo-base, enquanto a reunião anterior menciona relatório semanal; confirmar frequência, público, canal, campos e opt-out antes de ativar envio.
-- WhatsApp: fase posterior, após identificar provedor/API oficial, número, consentimento, templates, política de retenção, roteamento e custos. O agente pode consultar apenas dados/documentos explicitamente liberados, responder com link, criar solicitação e encaminhar exceções a uma pessoa.
+- **Fase 1 manual:** a equipe registra eventos aprovados, prepara e revisa o texto de atualização, copia e envia pelo WhatsApp que já usa, e registra no sistema quem enviou, quando, para qual contato e qual versão do texto. Não há envio, leitura de mensagens ou conexão WhatsApp pela aplicação nesta fase.
+- **Fase 2 integrada:** conectar o provedor de WhatsApp aprovado para envio assistido pela equipe após revisão; integrar eventos aprovados do Asana e do sistema Legais. Rodrigo/administrador do sistema Legais deve fornecer contrato de webhook e payload JSON versionado, autenticação/assinatura, IDs de projeto/protocolo, timestamp, política de repetição e ambiente de teste antes da implementação. Provedor/número, consentimento, templates, retenção, autenticação de webhook, retries e custos precisam ser aprovados. Não inclui chatbot nem envio autônomo.
+- **Fase 4:** adicionar portal/agente de atendimento com respostas fundamentadas em dados e documentos liberados, fila de pedidos e encaminhamento humano. O canal usa integração e decisões aprovadas na Fase 2.
 - Ações com efeito externo (confirmar alteração, prometer prazo, enviar arquivo restrito, comunicar aprovação) exigem confirmação humana. O agente registra o pedido, fonte consultada e resposta.
 
 ### 4.8 Busca e assistente contextual
@@ -103,19 +105,22 @@ O mapeamento exato de usuários, grupos, visibilidade por empresa cliente e resp
 
 ### 4.9 Interface e operação manual da Fase 1
 
-- Sidebar: Dashboard, Projetos e Configurações (Configurações só para Admin); identidade/papel e Sair ao final. Abas de cada projeto: Visão geral, Tarefas e fases, Definições e alterações, Legais e marcos, Documentos, Atividade.
-- Páginas: Entrar; Dashboard; lista/pesquisa de Projetos; Novo/Editar projeto; detalhe do projeto; configurações de usuários/papéis, listas de status/fases/disciplinas e mapeamentos externos planejados.
+- Sidebar: Dashboard, Projetos, Solicitações e Configurações (Configurações só para Admin); identidade/papel e Sair ao final. Abas de cada projeto: Visão geral, Tarefas e fases, Definições e alterações, Legais e marcos, Documentos, Atividade e Comunicações.
+- Páginas: Entrar; Dashboard; lista/pesquisa de Projetos; Novo/Editar projeto; detalhe do projeto; fila interna de solicitações de clientes; configurações de usuários/papéis, listas de status/fases/disciplinas e mapeamentos externos planejados. Cliente não precisa acessar o sistema na Fase 1.
 - Dashboard mostra contagens por fase/situação, tarefas vencidas/próximas, alterações aguardando validação, eventos legais recentes e atividade. Cada indicador abre a carteira já filtrada.
-- Formulários permitem CRUD manual conforme papel para projetos, tarefas, fases, definições/versionamento, eventos legais e referências de documentos. Arquivamento preserva histórico; decisões/definições têm autor, data, estado e versão.
+- Formulários permitem CRUD manual conforme papel para projetos, tarefas, fases, definições/versionamento, eventos legais, solicitações de informação/documento e referências de documentos. Arquivamento preserva histórico; decisões/definições têm autor, data, estado e versão.
+- **Atualizações ao cliente:** mudança de status, entrega, protocolo/parecer do Bombeiro ou aprovação legal confirmados podem originar rascunho na área Comunicações do projeto. Operador revisa/aprova o texto, envia manualmente pelo WhatsApp atual e registra o envio. Rascunho não significa mensagem enviada; a aplicação não conecta nem transmite WhatsApp na Fase 1.
+- **Pedidos do cliente:** equipe registra manualmente pedidos recebidos por WhatsApp, e-mail, telefone ou reunião em fila associada a cliente/projeto; localiza referências cadastradas, confirma no Drive que o item está liberado e envia link/arquivo manualmente pelo canal atual, fora do aplicativo. O sistema registra item, operador, data, canal e confirmação manual do atendimento; não transmite nem garante entrega. Não baixa/compartilha arquivo nem altera ACL do Drive.
+- **Alterações de projeto:** pedidos recebidos por WhatsApp, e-mail ou reunião podem ser capturados manualmente com origem, resumo/referência, projeto e disciplina. Aplicam-se revisão, aprovação explícita, versionamento e histórico; registrar/submeter não muda a definição vigente.
 - Banco relacional armazena usuários/papéis/atribuições, clientes, projetos, fases/status, tarefas, definições e versões, eventos legais, referências documentais, auditoria, IDs externos opcionais e mapeamentos preparados.
-- UI em português, responsiva, com busca/filtros/paginação, breadcrumb, estados vazio/erro/carregamento/sucesso, validação no servidor, confirmação de ações críticas, teclado/foco acessíveis e datas locais. Detalhamento por rota e fluxo: [índice das 17 SPECs verticais da Fase 1](../04_fase-atual/specs/00-INDICE.md). As rotas de shell, sessão, administração de usuários/permissões/listas, carteira e detalhe do projeto, tarefas, definições/alterações, legais, documentos, atividade, dashboard, mapeamentos preparados e piloto têm critérios de interface, dados, autorização, persistência e aceite próprios.
+- UI em português, responsiva, com busca/filtros/paginação, breadcrumb, estados vazio/erro/carregamento/sucesso, validação no servidor, confirmação de ações críticas, teclado/foco acessíveis e datas locais. Detalhamento por rota e fluxo: [índice das 19 SPECs verticais da Fase 1](../04-fase-atual/specs/00-INDICE.md). As rotas de shell, sessão, administração de usuários/permissões/listas, carteira e detalhe do projeto, tarefas, definições/alterações, legais, documentos, atividade, dashboard, mapeamentos preparados, solicitações, comunicações manuais e piloto têm critérios de interface, dados, autorização, persistência e aceite próprios.
 - Referências documentais aceitam nome/categoria/URL manual; Fase 1 não cria pastas, faz upload/download ou valida ACL no Drive.
 - Não há chamada de rede para Asana, Drive, Calendar/Gemini ou WhatsApp, botão de conexão, pedido de token nem automação externa na Fase 1.
 
 ## 5. Fluxo operacional alvo
 
 1. **Fase 1:** Atendimento cria o projeto manualmente na aplicação, preenche equipe, escopo, fases e situação; banco persiste o registro e identifica autor/fonte manual.
-2. **Fase 2:** após mapeamento aprovado, integra Asana e associa a pasta Drive validada. Divergências com cadastros manuais aparecem como pendência para conciliação, sem sobrescrita automática.
+2. **Fase 2:** após mapeamento aprovado, integra Asana e associa a pasta Drive validada; recebe eventos do sistema Legais e habilita envio WhatsApp assistido após revisão. Divergências com cadastros manuais aparecem como pendência para conciliação, sem sobrescrita automática.
 3. Cliente e equipe registram definições no canal escolhido; sistema mantém vigente + histórico.
 4. Reunião acontece e notas do Gemini seguem o fluxo atual. Link/arquivo é associado ao projeto; decisão ou alteração é extraída como rascunho e validada por humano.
 5. Engenharia consulta a definição vigente e registra/consulta entregas e marcos legais com evidência.
@@ -139,9 +144,9 @@ Dados pessoais de contatos só são usados para a finalidade do projeto, com aut
 
 | Fase | Resultado visível | Capacidades incluídas | Gate de aceite |
 |---|---|---|---|
-| 1. MVP manual com banco e interface | Aplicação interna navegável e útil para cadastrar/acompanhar projetos sem dependência de integração | Login e papéis; banco relacional; dashboard; sidebar/páginas; CRUD manual de projetos, tarefas, definições, eventos legais e referências; auditoria; contratos de integração preparados | Usuário percorre fluxos manuais; dados persistem entre sessões; permissões, histórico, formulários e estados da UI aprovados; nenhuma chamada externa |
-| 2. Integrações Asana e Drive | Registros conciliados com Asana e referências/arquivos Drive vinculados | OAuth e leitura Asana; mapeamento aprovado; upsert/reconciliação; associação de pastas Drive, referências e upload conforme ACL; conflitos manuais visíveis | Amostra Asana/Drive conciliada sem duplicatas; links/acesso aprovados; falhas reprocessáveis; registro manual não sobrescrito silenciosamente |
-| 3. Reuniões, marcos e comunicações | Linha do tempo do projeto e relatório pronto para revisão | Associação da reunião/nota Gemini; ata baseada no modelo; decisões/pendências; marcos/legais; relatório de status; comunicações em modo rascunho/aprovação | Itens da amostra rastreiam à fonte; mensagem de teste permanece em rascunho até aprovada; relatório reflete campos e horário de atualização |
+| 1. MVP manual com banco e interface | Aplicação interna operável para acompanhar projetos, responder pedidos e atualizar clientes manualmente | Login e papéis; banco; dashboard e CRUD; fila de solicitações; busca de referências autorizadas; alterações técnicas rastreáveis por canal; rascunho/revisão e registro manual de atualizações; auditoria; contratos externos desligados | Equipe demonstra os três fluxos prioritários sem integração; dados persistem; nenhuma chamada externa |
+| 2. Integrações e envio assistido | Eventos e fontes aprovados chegam ao sistema; operador envia mensagens pela conexão revisada | OAuth/leitura Asana; conciliação; Drive conforme ACL; webhook do sistema Legais; provedor WhatsApp aprovado para envio assistido; autenticação, retry, idempotência e logs | Amostra de cada fonte sem duplicatas; evento legal e envio autorizados; falhas reprocessáveis; dados manuais nunca sobrescritos silenciosamente |
+| 3. Reuniões, marcos e relatórios | Linha do tempo e relatórios consistentes com eventos já registrados | Associação da reunião/nota Gemini; ata baseada no modelo; decisões/pendências; regras de marcos; modelos e relatórios de status | Itens rastreiam à fonte; relatório reflete campos e horário; comunicação usa o fluxo assistido aprovado da Fase 2 |
 | 4. Portal e agente assistido | Cliente consulta projetos autorizados e registra pedidos; equipe atende fila | Acesso externo isolado por cliente; busca/documentos liberados; agente WhatsApp ou canal confirmado para FAQ e protocolo de pedidos; encaminhamento humano e auditoria | Testes de isolamento sem vazamento entre clientes; agente responde com fonte ou transfere; sem ação de escrita/envio sem aprovação; consentimento/canal configurados |
 | 5. Operação integrada e confiabilidade | Fluxo ponta a ponta validado em piloto e preparado para ampliação | Habilitar sincronização de escrita se aprovada; webhooks + reconciliação; relatório no canal/frequência decididos; monitoramento, recuperação de falhas, auditoria e revisão de automações | Matriz ponta a ponta aprovada pelos donos; recuperação sem duplicar ações; nenhuma falha silenciosa; métricas do piloto medidas; plano de suporte/retorno testado |
 
@@ -159,7 +164,7 @@ Cada fase entrega sistema utilizável. Assistente/automação não substitui des
 
 ## 9. Premissas e decisões pendentes
 
-As P1–P10 devem ser confirmadas com a Thórus usando o [questionário simples com instruções passo a passo](../03_documentos/06-Questionario-levantamento-cliente.md). Para a versão Word, use [DOCX editável](../03_documentos/06-Questionario-levantamento-cliente.docx). O questionário inclui passos para localizar projetos, campos, tarefas e status no Asana e descreve acesso de API sem pedir que tokens ou senhas sejam enviados.
+As P1–P10 devem ser confirmadas com a Thórus usando o [questionário simples com instruções passo a passo](../03_documentos/06-Questionario-levantamento-cliente.md). Para a versão Word, use [DOCX editável](../03_documentos/06-Questionario-levantamento-cliente.docx). O questionário inclui passos para localizar projetos, campos, tarefas e status no Asana sem alterar dados. Não envie tokens.
 
 | ID | Ponto a confirmar | Bloqueia |
 |---|---|---|
@@ -173,6 +178,7 @@ As P1–P10 devem ser confirmadas com a Thórus usando o [questionário simples 
 | P8 | Papéis e isolamento de clientes/contatos; conjunto de arquivos públicos para o cliente | Portal e busca externa |
 | P9 | Quem pode confirmar mudança técnica por disciplina e como sinalizar impacto de escopo/prazo | Definição vigente |
 | P10 | Base e amostra para medir tempo atual de localização e redução de retrabalho | Metas de resultado |
+| F2-L | Rodrigo/administrador do sistema Legais fornece eventos, JSON versionado, autenticação/assinatura, IDs de projeto/protocolo, timestamp, política de retry e ambiente de teste | Integração do sistema Legais na Fase 2 |
 
 ## 10. Integrações, confiabilidade e proteção
 
@@ -197,7 +203,7 @@ As P1–P10 devem ser confirmadas com a Thórus usando o [questionário simples 
 ## 12. Referências de origem
 
 - `Plano — 7d6d90e3/03-Projeto/01-Escopo.md` e `04-Mapeamento-Processos/02-Processos_mapeados/01-Automatizar o acompanhamento dos projetos.md` (material do workspace).
-- Transcrição fornecida da consultoria (Amanda Larentis e Kimberly Prestes); Cris estava ausente por viagem.
+- Transcrição fornecida da consultoria (Amanda Larentis e Kimberly Prestes); Cris estava ausente por viagem. Reunião de 05/10/2026: Amanda confirma atualização proativa via WhatsApp e envio de documentos; registros hoje divididos entre Asana, Google Chat, Drive e sistema Legais; Rodrigo propõe webhook do sistema Legais, pendente de payload/documentação.
 - Captura fornecida (01/10/2026): automação atual percorre reuniões da agenda e ativa notas do Gemini; imagem da estrutura de pastas Drive.
 - `26000-ATA-29-02-2026-arquivo-base.docx`: modelo de ata.
 - Documentação oficial da API Asana, links em “Integrações”.

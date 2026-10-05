@@ -1,12 +1,10 @@
 # Fase atual — Fase 1
 
-Plano de MVP manual com interface completa e banco próprio. As integrações de negócio ficam desligadas e são executadas na Fase 2.
+MVP manual da equipe com interface e banco próprios. A equipe registra solicitações recebidas por WhatsApp/e-mail/reuniões, localiza referências e envia documentos autorizados manualmente; prepara/revisa e registra atualizações a partir de eventos confirmados; e centraliza alterações técnicas com origem, aprovação e histórico. Fase 1 não conecta Asana, Drive, sistema Legais ou WhatsApp, não lê conversas e não envia automaticamente. As conexões externas serão finalizadas na Fase 2.
 
-- [Tasks gerais](fase.md)
-- [Matriz de rastreabilidade](matriz-de-rastreabilidade.md)
-- [Índice das SPECs](specs/00-INDICE.md)
-- [Contrato de interface](specs/01-contrato-interface.md)
-- [Contrato de dados e API local](specs/02-contrato-dados-api.md)
+- [Tasks](fase.md)
+- [Matriz](matriz-de-rastreabilidade.md)
+- [Índice das 19 SPECs](specs/00-INDICE.md)
+- [Interface](specs/01-contrato-interface.md)
+- [Dados/API](specs/02-contrato-dados-api.md)
 - [Questionário P1–P10](../03_documentos/06-Questionario-levantamento-cliente.md)
-
-As 17 SPECs definem por rota/fluxo a UI/UX, dados, regras, permissões, persistência, estados de erro e aceite.

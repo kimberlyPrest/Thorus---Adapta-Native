@@ -26,7 +26,7 @@ Editar nome ou arquivar sem afetar documento de origem.
 ## Limites e dependências
 
 - **Inclui:** rota `/projetos/{id}/documentos`, leitura/mutação desta SPEC, persistência pertinente, grants de servidor, estados D3, activity C3 e evidência abaixo.
-- **Fora de escopo:** Integrações Asana/Drive/Gemini/WhatsApp e comunicação externa.
+- **Fora de escopo:** Integrações Asana/Drive/Gemini/WhatsApp; criar/alterar compartilhamento ou enviar automaticamente. Atendimento manual é detalhado na SPEC-1-018.
 - **Entradas e pré-condições:** C2–C5, UI D1–D5, grants descritos abaixo; P3 organiza referência documental futura; não bloqueia link manual no MVP. P8 governa visibilidade interna.
 - **Saídas/artefatos:** página funcional, response envelope C3, migration/constraint necessários, eventos de auditoria, evidências CA.
 - **Dependências e responsáveis:** dependências listadas no cabeçalho; Produto/Engenharia fecha B1; Thórus fecha perguntas P referenciadas.
@@ -70,7 +70,7 @@ UI chama somente API local C3; tabelas respeitam FKs/índices C2. Nenhuma API As
 Não buscar URL no servidor, baixar arquivo, gerar thumbnail nem usar HEAD para validar acesso.
 Abrir endereço externo é ação manual do navegador; descrever claramente se a pessoa recebe negação no destino.
 URL igual pode ser cadastrada duas vezes com nomes diferentes por intenção; UI avisa referência similar no mesmo projeto, sem merge automático.
-Arquivar referência nunca remove arquivo externo.
+Arquivar referência nunca remove arquivo externo. A referência não comprova autorização de envio; na SPEC-1-018, operador confirma ACL no Drive para o destinatário antes do envio manual.
 
 ## API local desta entrega
 

@@ -54,7 +54,7 @@ URL/rota: `/projetos/{id}/definicoes/solicitacoes`. Base visual única: [Contrat
 |---|---|
 | definitionId/baseVersionId | Obrigatórios; base copiada da vigente ao abrir formulário |
 | proposedValue/reason | Obrigatórios para enviar, limites C2; rascunho pode ficar incompleto |
-| impactNote/origin/sourceUrl | Opcionais; origin enum C2; URL manual não importa texto |
+| impactNote/origin/sourceUrl | Opcionais; origin enum C2 inclui whatsapp/email/meeting/manual; resumo e fonte são capturados manualmente, sem importar conversa; URL não importa texto |
 | decisionNote | 3–2000 obrigatório aprovar/recusar; decidedBy/time vem do servidor |
 | expectedVersion | Da solicitação; aprovação também verifica vigente atual = baseVersionId |
 
@@ -72,7 +72,7 @@ UI chama somente API local C3; tabelas respeitam FKs/índices C2. Nenhuma API As
 Transições: draft→pending (autor com campos completos); draft/pending→cancelled (autor); pending→draft (autor para revisar); pending→approved/rejected (aprovador elegível). Estados finais não reabrem; novo pedido referencia a vigente.
 Duas aprovações concorrentes de pedidos base v1: primeira gera v2; segunda 409 base desatualizada, sem criar v3 silenciosa.
 Mesmo aprovador/solicitante só decide se designado P9; não presumir separação obrigatória de pessoas, registrar política humana em P9 antes do piloto real.
-Recusar/cancelar mantém vigente; aprovação substitui ponteiro mas preserva todas versões. Não gerar aviso externo ou efeito de preço/prazo automaticamente.
+Recusar/cancelar mantém vigente; aprovação substitui ponteiro mas preserva todas versões. Pedidos recebidos por WhatsApp, e-mail ou reunião são capturados manualmente com origem/referência resumida; não armazenar conversa integral ou credencial. Não gerar aviso externo ou efeito de preço/prazo automaticamente.
 
 ## API local desta entrega
 
