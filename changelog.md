@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-07 — Validação F1-02 (P8/P9)
+
+- Thórus Admin aprovou a matriz-base C4; P8 confirmado: Admin=all; CS, Engenharia, Legais e Liderança=assigned, sendo Liderança somente leitura. Equipe interna pode consultar documentos marcados como liberados ao cliente; portal não será usado neste momento; categorias indicadas: ART, plantas, modelos, memoriais e documentos de aprovação do projeto; não há aprovação individual requerida para a liberação; CS valida o vínculo do contato.
+- P9 confirmado: CS registra o pedido; Engenharia analisa impacto técnico; Engenharia e CS aprovam juntos; CS foi indicado como responsável por atualizar a definição oficial; avisar CS e Engenharia; a mudança só passa a valer após aprovação; não encaminhar ao Comercial por impacto em prazo/preço; CS decide eventual impacto comercial.
+- DÚVIDA: a aprovação conjunta Engenharia+CS e o papel de CS na atualização da definição vigente não cabem claramente ao contrato atual: C2/SPEC-1-011 modelam um único `decided_by`/`decidedBy` e uma única ação `definitions.decide` por solicitação, com a versão vigente criada atomicamente na aprovação. Consultor deve esclarecer como representar duas aprovações obrigatórias e se CS é aprovador (elegível/designado) ou apenas executor do registro, antes de finalizar F1-02/alterar SPECs. Nenhuma regra foi inferida nem implementada.
+- B1 permanece decisão de Produto/Engenharia: runtime, banco, migration/test runner e limite de provisionamento de role ainda não foram identificados no handoff.
+
 ## 05/10/2026
 - Escopo v1.2 atualizado com os três fluxos prioritários manuais na Fase 1; adicionadas SPECs verticais 018/019, tasks F1-38 a F1-41 e tasks de integração Legal/WhatsApp para Fase 2.
 
