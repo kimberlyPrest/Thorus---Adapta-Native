@@ -1,10 +1,17 @@
 # Changelog
 
+## 2026-10-16 — Revisão da regra P9 (F1-02)
+
+- Thórus Admin revisou a regra de aprovação técnica para eliminar a divergência com C2/SPEC-1-011: um único aprovador designado por projeto/disciplina (Engenharia ou CS), com CS apenas avisado da decisão. A exigência anterior de coaprovação obrigatória Engenharia+CS fica retirada; a definição vigente é criada atomicamente na decisão do aprovador designado, conforme SPEC-1-011.
+- Demais respostas P9 de 2026-10-07 permanecem: CS registra o pedido; Engenharia analisa impacto técnico; a mudança só vale após aprovação; avisar CS e Engenharia; não encaminhar ao Comercial por impacto em prazo/preço; CS decide eventual impacto comercial.
+- A DÚVIDA registrada em 2026-10-07 está resolvida sem emenda de SPEC: o contrato atual (C2 `change_requests.decided_by` único + `project_approvers` por projeto/disciplina) já representa a regra revisada. Nada foi implementado.
+- B1 permanece decisão de Produto/Engenharia: runtime, banco, ferramenta de migration/test runner e limite de provisionamento de role ainda não registrados.
+
 ## 2026-10-07 — Validação F1-02 (P8/P9)
 
 - Thórus Admin aprovou a matriz-base C4, com a decisão específica para Liderança: `all` somente leitura. P8 confirmado: Admin=all; CS, Engenharia e Legais=assigned; Liderança=all/read-only. Todos os perfis internos podem consultar documentos marcados como liberados ao cliente; portal não será usado neste momento; categorias indicadas: ART, plantas, modelos, memoriais e documentos de aprovação do projeto; não há aprovação individual requerida para a liberação; CS valida o vínculo do contato.
-- P9 confirmado: CS registra o pedido; Engenharia analisa impacto técnico; Engenharia e CS são coaprovadores obrigatórios (não basta qualquer um isoladamente); a definição vigente muda automaticamente após ambas as aprovações, e CS participa da aprovação; avisar CS e Engenharia; não encaminhar ao Comercial por impacto em prazo/preço; CS decide eventual impacto comercial.
-- DÚVIDA: o C2/SPEC-1-011 modela um único `decided_by`/`decidedBy`, uma decisão por solicitação e a criação atômica da versão vigente no momento da aprovação. A regra confirmada exige duas aprovações obrigatórias (Engenharia + CS) e atualização automática após ambas. Consultor deve definir como representar e auditar as duas aprovações, transições/intermediário e o ponto atômico que cria a versão vigente. Não inferir nem implementar alternativa sem atualização contratual.
+- P9 confirmado: CS registra o pedido; Engenharia analisa impacto técnico; Engenharia e CS são coaprovadores obrigatórios (não basta qualquer um isoladamente); a definição vigente muda automaticamente após ambas as aprovações, e CS participa da aprovação; avisar CS e Engenharia; não encaminhar ao Comercial por impacto em prazo/preço; CS decide eventual impacto comercial. [Revisado em 2026-10-16: coaprovação substituída por aprovador único designado; CS apenas avisado.]
+- DÚVIDA: o C2/SPEC-1-011 modela um único `decided_by`/`decidedBy`, uma decisão por solicitação e a criação atômica da versão vigente no momento da aprovação. A regra confirmada exige duas aprovações obrigatórias (Engenharia + CS) e atualização automática após ambas. Consultor deve definir como representar e auditar as duas aprovações, transições/intermediário e o ponto atômico que cria a versão vigente. Não inferir nem implementar alternativa sem atualização contratual. [Resolvida em 2026-10-16 pela revisão da regra acima.]
 - B1 permanece decisão de Produto/Engenharia: runtime, banco, ferramenta de migration/test runner e limite de provisionamento de role ainda não foram identificados no handoff.
 
 ## 05/10/2026

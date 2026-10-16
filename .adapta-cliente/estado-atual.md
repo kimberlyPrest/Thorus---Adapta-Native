@@ -6,8 +6,8 @@
 - etapa: bloqueada
 - autorizacao_implementacao: ausente — nenhuma implementação autorizada; F1-02 valida política, F1-19 implementa a matriz após as dependências
 - teste_humano: nao_aplicavel — nenhuma implementação técnica ocorreu
-- verificacao_automatica: pendente — B1/runtime de Produto/Engenharia ainda não identificado; nenhum teste de implementação executado
+- verificacao_automatica: pendente — B1/runtime de Produto/Engenharia ainda não registrado; nenhum teste de implementação executado
 - aprendizado: pendente
-- ultima_acao: Em 2026-10-07 recebidas respostas P8/P9 e esclarecimento: matriz C4 aprovada; Admin=all; CS/Engenharia/Legais=assigned; Liderança=all somente leitura; todos os perfis internos podem consultar documentos liberados ao cliente; sem portal; categorias permitidas ART, plantas, modelos, memoriais e documentos de aprovação do projeto; sem aprovação individual; CS valida contato. P9: CS registra pedido; Engenharia avalia impacto; Engenharia e CS são coaprovadores obrigatórios; CS é coaprovador e a definição vigente muda automaticamente quando ambos aprovarem; avisar CS e Engenharia; sem encaminhamento ao Comercial por prazo/preço; CS decide eventual impacto comercial. A F1-02 segue bloqueada porque C2/SPEC-1-011 só modelam um decided_by/decidedBy e uma aprovação que cria atomicamente a versão vigente. A dúvida foi registrada no changelog para decisão do consultor.
-- proxima_acao: aguardar consultor reconciliar coaprovação obrigatória Engenharia+CS com C2/SPEC-1-011; Produto/Engenharia identificar B1/limite de provisionamento antes de F1-19
-- atualizado_em: 2026-10-07T11:10:37-03:00
+- ultima_acao: Em 2026-10-16 Thórus Admin revisou a regra P9: aprovador único designado por projeto/disciplina (Engenharia ou CS), CS apenas avisado; coaprovação obrigatória retirada; DÚVIDA com C2/SPEC-1-011 resolvida sem emenda, pois o contrato já modela decided_by único e criação atômica da versão vigente. P8 integralmente respondido (Admin=all; CS/Engenharia/Legais=assigned; Liderança=all/read-only; documentos liberados consultáveis pelos perfis internos; sem portal; categorias ART/plantas/modelos/memoriais/documentos de aprovação; sem aprovação individual; CS valida contato).
+- proxima_acao: aguardar registro de B1 por Produto/Engenharia (stack, banco, migração, test runner e limite de provisionamento de role) para liberar F1-02 e planejar F1-19
+- atualizado_em: 2026-10-16T12:04:41-03:00
