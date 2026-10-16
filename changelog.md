@@ -1,18 +1,24 @@
 # Changelog
 
+## 2026-10-16 — Registro do B1 (decisões técnicas de fundação)
+
+- Produto/Engenharia (Adapta) registrou o B1 do contrato C1 em `06_notas/2026-10-16-registro-b1.md`: runtime React+TS (Vite) no padrão Skip Cloud com backend PocketBase; banco SQLite embutido; migrações versionadas em `pocketbase/migrations/`; test runner Vitest; binding concreto = API de collections do PocketBase + hooks server-side preservando o envelope e os códigos de erro do C3; limite de provisionamento de role conforme o C4 (provisionamento Admin-only, um perfil por usuário no MVP, último Admin protegido, `access_state` pending/ready, `policy_version`, concessões/revogações em `activity_event`).
+- **F1-02 liberada para validação pela Thórus** — P8 respondida e B1 registrado; a matriz papel × ação × escopo pode ser assinada (SPEC-1-004-CA-01). F1-19 planejável após F1-02 concluída e runtime provisionado.
+- Nada foi implementado: nenhuma migration executada, nenhum código gravado. F1-04 e F1-14 seguem dependentes do B3 (método de autenticação corporativa — decisão de Thórus Admin + Engenharia) antes de contas reais.
+
 ## 2026-10-16 — Revisão da regra P9 (F1-02)
 
 - Thórus Admin revisou a regra de aprovação técnica para eliminar a divergência com C2/SPEC-1-011: um único aprovador designado por projeto/disciplina (Engenharia ou CS), com CS apenas avisado da decisão. A exigência anterior de coaprovação obrigatória Engenharia+CS fica retirada; a definição vigente é criada atomicamente na decisão do aprovador designado, conforme SPEC-1-011.
 - Demais respostas P9 de 2026-10-07 permanecem: CS registra o pedido; Engenharia analisa impacto técnico; a mudança só vale após aprovação; avisar CS e Engenharia; não encaminhar ao Comercial por impacto em prazo/preço; CS decide eventual impacto comercial.
 - A DÚVIDA registrada em 2026-10-07 está resolvida sem emenda de SPEC: o contrato atual (C2 `change_requests.decided_by` único + `project_approvers` por projeto/disciplina) já representa a regra revisada. Nada foi implementado.
-- B1 permanece decisão de Produto/Engenharia: runtime, banco, ferramenta de migration/test runner e limite de provisionamento de role ainda não registrados.
+- B1 permanece decisão de Produto/Engenharia: runtime, banco, ferramenta de migration/test runner e limite de provisionamento de role ainda não registrados. [Resolvido em 2026-10-16 — ver entrada "Registro do B1" acima.]
 
 ## 2026-10-07 — Validação F1-02 (P8/P9)
 
 - Thórus Admin aprovou a matriz-base C4, com a decisão específica para Liderança: `all` somente leitura. P8 confirmado: Admin=all; CS, Engenharia e Legais=assigned; Liderança=all/read-only. Todos os perfis internos podem consultar documentos marcados como liberados ao cliente; portal não será usado neste momento; categorias indicadas: ART, plantas, modelos, memoriais e documentos de aprovação do projeto; não há aprovação individual requerida para a liberação; CS valida o vínculo do contato.
 - P9 confirmado: CS registra o pedido; Engenharia analisa impacto técnico; Engenharia e CS são coaprovadores obrigatórios (não basta qualquer um isoladamente); a definição vigente muda automaticamente após ambas as aprovações, e CS participa da aprovação; avisar CS e Engenharia; não encaminhar ao Comercial por impacto em prazo/preço; CS decide eventual impacto comercial. [Revisado em 2026-10-16: coaprovação substituída por aprovador único designado; CS apenas avisado.]
 - DÚVIDA: o C2/SPEC-1-011 modela um único `decided_by`/`decidedBy`, uma decisão por solicitação e a criação atômica da versão vigente no momento da aprovação. A regra confirmada exige duas aprovações obrigatórias (Engenharia + CS) e atualização automática após ambas. Consultor deve definir como representar e auditar as duas aprovações, transições/intermediário e o ponto atômico que cria a versão vigente. Não inferir nem implementar alternativa sem atualização contratual. [Resolvida em 2026-10-16 pela revisão da regra acima.]
-- B1 permanece decisão de Produto/Engenharia: runtime, banco, ferramenta de migration/test runner e limite de provisionamento de role ainda não foram identificados no handoff.
+- B1 permanece decisão de Produto/Engenharia: runtime, banco, ferramenta de migration/test runner e limite de provisionamento de role ainda não foram identificados no handoff. [Resolvido em 2026-10-16 — ver entrada "Registro do B1" acima.]
 
 ## 05/10/2026
 - Escopo v1.2 atualizado com os três fluxos prioritários manuais na Fase 1; adicionadas SPECs verticais 018/019, tasks F1-38 a F1-41 e tasks de integração Legal/WhatsApp para Fase 2.
