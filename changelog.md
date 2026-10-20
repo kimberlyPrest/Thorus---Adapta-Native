@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-20 — F1-02 concluída (validação da matriz pela Thórus)
+
+- Thórus Admin validou e assinou a matriz papel × ação × escopo (SPEC-1-004-CA-01), fechando a F1-02. Matriz aprovada: Admin=all; CS, Engenharia e Legais=assigned; Liderança=all somente leitura; recursos/ações conforme C4 (projects, tasks, definitions, legal_events, documents, activity, dashboard, admin_*, client_requests, customer_updates); regras de composição confirmadas (ausência de grant nega; escrita exige read + projects.read; um perfil por usuário; aprovação técnica exige designação por projeto/disciplina); casos permitido/negado definidos.
+- Verificação automática (documental) passou: critérios conferidos contra SPEC-1-004, contrato C4 e registro B1 (06_notas/2026-10-16-registro-b1.md). Nenhuma implementação técnica ocorreu — F1-02 é validação de política.
+- Aprendizado registrado em 06_notas/aprendizado-continuo/controle.md.
+- Próximas dependências: F1-19 (implementar matriz) planejável após runtime provisionado; F1-04/F1-14 seguem bloqueadas por B3 (método de autenticação corporativa — decisão Thórus Admin + Engenharia).
+
 ## 2026-10-16 — Registro do B1 (decisões técnicas de fundação)
 
 - Produto/Engenharia (Adapta) registrou o B1 do contrato C1 em `06_notas/2026-10-16-registro-b1.md`: runtime React+TS (Vite) no padrão Skip Cloud com backend PocketBase; banco SQLite embutido; migrações versionadas em `pocketbase/migrations/`; test runner Vitest; binding concreto = API de collections do PocketBase + hooks server-side preservando o envelope e os códigos de erro do C3; limite de provisionamento de role conforme o C4 (provisionamento Admin-only, um perfil por usuário no MVP, último Admin protegido, `access_state` pending/ready, `policy_version`, concessões/revogações em `activity_event`).
