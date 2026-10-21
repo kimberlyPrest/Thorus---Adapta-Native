@@ -1,7 +1,7 @@
 # Status do projeto
 
 **Data:** 21/10/2026<br>
-**Estado:** F1-01, F1-02 e F1-03 concluídas — dicionário de campos aprovado (SPEC-1-007-CA-01), matriz de acesso validada e assinada (SPEC-1-004-CA-01) e modelo relacional de clients/projects aprovado para migração (SPEC-1-007-CA-02).
+**Estado:** F1-01, F1-02, F1-03 e F1-05 concluídas (4/41, ~10%) — dicionário de campos aprovado (SPEC-1-007-CA-01), matriz de acesso validada e assinada (SPEC-1-004-CA-01), modelo relacional aprovado para migração (SPEC-1-007-CA-02) e shell com sidebar/breadcrumb implementado e testado no preview (SPEC-1-001).
 
 Na Fase 1, a equipe registra e atende pedidos de clientes, envia documentos autorizados manualmente, prepara/revisa e registra atualizações de eventos confirmados e centraliza alterações técnicas recebidas por diferentes canais. As integrações Asana, Drive, sistema Legais e WhatsApp ficam para Fase 2. A credencial local do Asana foi usada somente em consultas GET de leitura. Nenhum dado foi escrito no Asana ou salvo como exportação no pacote. Remova a credencial do `.env` e revogue-a após esta revisão.
 
@@ -13,7 +13,9 @@ Na Fase 1, a equipe registra e atende pedidos de clientes, envia documentos auto
 
 **Modelo relacional (F1-03, 21/10):** clients/projects com versionamento C2 (version inicial 1), FKs RESTRICT, unicidade de code (quando preenchido) e normalized_name, índices de consulta aprovados; provisionamento por migration versionada (padrão B1). Registro em `06_notas/2026-10-21-registro-f1-03-modelo-relacional.md`. DÚVIDA aberta: unicidade de normalized_name diverge da permissão de nomes iguais em SPEC-1-007 — o consultor decide por emenda antes da migration (F1-15).
 
-**Próximas dependências:** F1-05 (shell/navegação) é a próxima candidata de implementação; F1-15 (formulários + migration) depende da DÚVIDA do normalized_name e de interface acessível; F1-19 planejável após runtime provisionado; F1-04/F1-14 aguardam B3 (autenticação corporativa — decisão Thórus + Engenharia). Nada implementado ainda.
+**Shell (F1-05, 21/10):** primeira implementação no app Skip (v0.0.4 `8ac2ed5`) — sidebar com menu por perfil (Admin/CS), submenu Configurações, rotas futuras desabilitadas ("Em breve"), breadcrumb, drawer mobile, página de referência D2/D3 no Dashboard e Projetos com estado vazio; identidade de demonstração por fixture (a SPEC-1-001 permite até /api/me existir); QA da plataforma verde; suite de testes pendente de runner (dívida marcada). Teste humano aprovado pelo champion.
+
+**Próximas dependências:** F1-06 (carteira) é a próxima candidata — a leitura autorizada real depende da F1-15 (migration) ou de fixtures C5; F1-15 depende da DÚVIDA do normalized_name; F1-19 planejável após runtime provisionado; F1-04/F1-14 aguardam B3 (autenticação corporativa — decisão Thórus + Engenharia).
 
 - [Escopo](01_projeto/escopo-definitivo.md)
 - [Tasks Fase 1](04_fase-atual/fase.md)
