@@ -1,7 +1,7 @@
 # Status do projeto
 
-**Data:** 20/10/2026<br>
-**Estado:** F1-02 concluída — matriz papel × ação × escopo validada e assinada pela Thórus (SPEC-1-004-CA-01).
+**Data:** 21/10/2026<br>
+**Estado:** F1-01 e F1-02 concluídas — dicionário de campos do cadastro aprovado (SPEC-1-007-CA-01) e matriz papel × ação × escopo validada e assinada (SPEC-1-004-CA-01).
 
 Na Fase 1, a equipe registra e atende pedidos de clientes, envia documentos autorizados manualmente, prepara/revisa e registra atualizações de eventos confirmados e centraliza alterações técnicas recebidas por diferentes canais. As integrações Asana, Drive, sistema Legais e WhatsApp ficam para Fase 2. A credencial local do Asana foi usada somente em consultas GET de leitura. Nenhum dado foi escrito no Asana ou salvo como exportação no pacote. Remova a credencial do `.env` e revogue-a após esta revisão.
 
@@ -9,7 +9,9 @@ Na Fase 1, a equipe registra e atende pedidos de clientes, envia documentos auto
 
 **Matriz de acesso (F1-02, 20/10):** Admin=all; CS, Engenharia e Legais=assigned; Liderança=all somente leitura; recursos/ações conforme C4; escrita exige read + projects.read; um perfil por usuário; aprovação técnica exige designação por projeto/disciplina (regra P9 revisada em 16/10).
 
-**Próximas dependências:** F1-19 (implementar a matriz) planejável após runtime provisionado; F1-04/F1-14 aguardam B3 (autenticação corporativa — decisão Thórus + Engenharia). Nada implementado ainda.
+**Dicionário de campos (F1-01, 21/10):** mínimo obrigatório nome + cliente; demais campos do C2 opcionais; nenhum dado pessoal obrigatório. Registro em `06_notas/2026-10-21-registro-f1-01-dicionario.md`. P1/P2 "ainda não definido" — bloqueiam apenas a integração da Fase 2.
+
+**Próximas dependências:** F1-03 (modelo relacional, SPEC-1-007) elegível; F1-19 (implementar a matriz) planejável após runtime provisionado; F1-04/F1-14 aguardam B3 (autenticação corporativa — decisão Thórus + Engenharia). Nada implementado ainda.
 
 - [Escopo](01_projeto/escopo-definitivo.md)
 - [Tasks Fase 1](04_fase-atual/fase.md)
