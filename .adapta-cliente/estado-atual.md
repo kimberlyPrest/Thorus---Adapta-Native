@@ -3,11 +3,11 @@
 - task_id: F1-09
 - champion: Amanda (Thórus Admin)
 - spec: 04_fase-atual/specs/spec-16-admin-integracoes-planejadas.md
-- etapa: aguardando_autorizacao
-- autorizacao_implementacao: ausente
+- etapa: implementando
+- autorizacao_implementacao: confirmada + 2026-10-21T12:11 (canal web) — formulário: "Autorizo implementar o plano"
 - teste_humano: pendente
-- verificacao_automatica: pendente — baseline inspecionado sem alteração: app Skip v0.0.7 (7f71374), QA verde, rotas /, /dashboard, /projetos; PocketBase sem migrations (próxima ordinal 0001) e somente coleção users; working tree limpo; questionário P1–P10 sem resposta (SPEC-1-016 permite rascunho com GIDs fictícios)
+- verificacao_automatica: pendente — RED equivalente registrado: /configuracoes/integracoes não existe (item "Em breve" no menu), sem collections/migrations no PocketBase; implementação iniciada conforme plano autorizado (migration 0001 com 2 coleções, hooks de validação, página Admin-only, zero egress)
 - aprendizado: pendente
-- ultima_acao: F1-09 selecionada (primeira elegível: F1-04 bloqueada por B3; F1-07/F1-12 aguardam P5; F1-08 aguarda primeira rota mutável; F1-13 aguarda P3; F1-15 tem DÚVIDA de contrato); relatório de análise entregue no canal web
-- proxima_acao: aguardar autorização para implementar
-- atualizado_em: 2026-10-21T12:20:00-03:00
+- ultima_acao: autorização recebida; etapa → implementando; alterações restritas à rota /configuracoes/integracoes e suporte (migration, hooks, service, página, menu/rotas)
+- proxima_acao: implementar, rodar QA pipeline do Skip e parar no teste humano
+- atualizado_em: 2026-10-21T12:12:00-03:00
