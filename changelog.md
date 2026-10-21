@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-10-21 — F1-03 concluída (modelo relacional aprovado) + DÚVIDA de unicidade
+
+- Thórus aprovou o modelo relacional de clients/projects para migração (SPEC-1-007-CA-02), registrado em `06_notas/2026-10-21-registro-f1-03-modelo-relacional.md`: versionamento C2 confirmado (`version` inteiro inicial 1; `created_at`/`created_by`/`updated_at`); FKs de histórico com RESTRICT, sem cascade; unicidade de `projects.code` quando preenchido (trim/maiúscula, ≤30) e de `clients.normalized_name`; `projects.name` sem unicidade; índices de consulta por client_id, phase_option_id, status_option_id, archived_at e normalized_name; provisionamento por migration versionada em `pocketbase/migrations/` (padrão B1), sem alterar o app Skip fora de task autorizada.
+- DÚVIDA: a unicidade de `normalized_name` aprovada no formulário diverge da SPEC-1-007, que permite cadastrar cliente novo com nome igual a existente (sugestão por normalização, sem deduplicação destrutiva). O consultor decide antes da migration da F1-15: manter UNIQUE (emenda de SPEC) ou índice sem unicidade (leitura literal da SPEC). Enquanto não resolvida, a F1-15 não implementa essa constraint.
+- Nada foi implementado: documento de política técnica, sem migration ou código. Baseline do repositório executável verificado no Skip (projeto 56846, v0.0.3 `fe5cc94`, não publicado; somente coleção auth `users`; nenhuma migration; alteração pendente em `.skip.config.json` permanece intocada).
+
 ## 2026-10-21 — F1-01 concluída (dicionário de campos aprovado)
 
 - Thórus aprovou o dicionário de campos do cadastro manual (SPEC-1-007-CA-01), registrado em `06_notas/2026-10-21-registro-f1-01-dicionario.md`: o mínimo obrigatório permanece nome + cliente (clients.name 2–160; projects.name 2–160 + client_id); nenhum campo adicional foi tornado obrigatório; nenhum dado pessoal (CPF/CNPJ/endereço/contato pessoal) é obrigatório. Dicionário completo com campo, tipo, obrigatoriedade, permissão e exemplo fictício no registro.
