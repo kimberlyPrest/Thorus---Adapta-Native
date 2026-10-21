@@ -1,13 +1,13 @@
 # Estado atual — Adapta Cliente
 
-- task_id: F1-09
+- task_id: F1-22
 - champion: Amanda (Thórus Admin)
-- spec: 04_fase-atual/specs/spec-16-admin-integracoes-planejadas.md
-- etapa: concluida
-- autorizacao_implementacao: confirmada + 2026-10-21T12:11 (canal web) — formulário: "Autorizo implementar o plano"
-- teste_humano: aprovado + 2026-10-21T12:29 (canal web) — "Funcionou"
-- verificacao_automatica: passou — QA pipeline verde (v0.0.9 4a80144 → v0.0.12 5e3355a; test ran:false — runner ausente, dívida mantida); migrations 0001/0002/0003 aplicadas; API provada (enabled=false forçado, enabled=true/allowlist/sem-token/revision obsoleta/GID duplicado recusados, update revision 2 ok); revalidação independente pós-teste passou; preview verificado autenticado e anônimo (sem vazamento)
-- aprendizado: capturado:06_notas/aprendizado-continuo/controle.md (JSVM: top-level invisível em callbacks; campo inexistente em regra RLS invalida a rule check; BoolField required rejeita false; migration imutável → correção em nova migration)
-- ultima_acao: F1-09 concluída — SPEC-1-016-CA-01 fechada; registro em 06_notas/2026-10-21-registro-f1-09-integracoes-planejadas.md; STATUS/changelog/fase.md atualizados (commits a846944, 5edbc2d, 7a88e0e)
-- proxima_acao: aguardar próximo pedido do champion (não abrir task automaticamente)
-- atualizado_em: 2026-10-21T12:33:00-03:00
+- spec: 04_fase-atual/specs/spec-06-carteira-projetos.md
+- etapa: aguardando_autorizacao
+- autorizacao_implementacao: ausente
+- teste_humano: pendente
+- verificacao_automatica: pendente — baseline inspecionado sem alteração: /projetos íntegra (projeto A, contador "1 projeto", filtros CS/Resp. técnico), app v0.0.12, QA verde; F1-08 avaliada e considerada prematura (rota /projetos/{id}/atividade depende do domínio SPEC-1-008, não entregue; mutação com escopo de projeto inexistente) — trava registrada no relatório
+- aprendizado: pendente
+- ultima_acao: F1-22 selecionada (validação da carteira, SPEC-1-006-CA-02; pré-condições F1-06 ✓ e C5 ✓); relatório de análise entregue no canal web
+- proxima_acao: aguardar autorização para executar a validação
+- atualizado_em: 2026-10-21T12:40:00-03:00
