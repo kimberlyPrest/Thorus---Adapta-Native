@@ -1,13 +1,13 @@
 # Estado atual — Adapta Cliente
 
-- task_id: F1-22
+- task_id: F1-19
 - champion: Amanda (Thórus Admin)
-- spec: 04_fase-atual/specs/spec-06-carteira-projetos.md
-- etapa: concluida
-- autorizacao_implementacao: confirmada + 2026-10-21T12:38 (canal web) — formulário: "Autorizo executar a validação"
-- teste_humano: aprovado + 2026-10-21T12:38 (canal web) — a autorização do dono Thorus para executar a validação constitui o ato de validação desta task de prova
-- verificacao_automatica: passou — matriz query × perfil com 14 cenários aprovados (S01–S14), incluindo retorno do navegador com URL/filtros restaurados (S13) e sentinela B ausente para CS com troca real de perfil (S14); registro em 06_notas/2026-10-21-registro-f1-22-validacao-carteira.md; incidente de fase.md (2fb0331) detectado na verificação e restaurado em bf31153 (41 tasks verificadas)
-- aprendizado: capturado:06_notas/aprendizado-continuo/controle.md (matriz em lote por CLI; Radix option clicável programaticamente; pré-condição literal não basta — rota alvo precisa existir; fase.md nunca redigido à mão em push de fechamento — editar cópia local verificada)
-- ultima_acao: F1-22 concluída — SPEC-1-006-CA-02 fechada sem alteração de código (v0.0.12 permanece); F1-08 registrada como prematura em STATUS/changelog; incidente de fase.md corrigido
-- proxima_acao: aguardar próximo pedido do champion (não abrir task automaticamente)
-- atualizado_em: 2026-10-21T12:50:00-03:00
+- spec: 04_fase-atual/specs/spec-04-admin-permissoes.md
+- etapa: aguardando_autorizacao
+- autorizacao_implementacao: ausente
+- teste_humano: pendente
+- verificacao_automatica: pendente — baseline inspecionado sem alteração: F1-02 ✓, P8 ✓, runtime B1 provisionado (migrations 0001–0003 aplicadas, campo role admin/cs em users); não existem ainda coleções de roles/permissions/policy_version nem activity_events; rejeições da F1-33 reconfirmadas vivas (herdadas da F1-09)
+- aprendizado: pendente
+- ultima_acao: F1-19 selecionada (primeira elegível pela ordem — precede F1-33, cuja pré-condição F1-15/DÚVIDA segue pendente); relatório de análise entregue no canal web
+- proxima_acao: aguardar autorização para implementar
+- atualizado_em: 2026-10-21T12:57:00-03:00
