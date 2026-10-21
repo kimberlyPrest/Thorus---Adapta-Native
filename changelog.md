@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-21 — F1-06 concluída (carteira com busca, filtros e paginação autorizados)
+
+- Task F1-06 concluída: rota `/projetos` implementada no app Skip (v0.0.5 `91b5d57`, v0.0.6 `2208d5f`, v0.0.7 `7f71374`) sobre fixtures C5 locais (projetos A e B; CS atribuído somente a A; B arquivado como sentinela de vazamento) com autorização local de semântica C4 — o universo autorizado é filtrado antes de busca, filtros, contagem e paginação, e nenhum resultado oculto entra no total. QA da plataforma verde nas três versões (suite de testes sem runner no projeto, dívida mantida).
+- Página conforme a SPEC-1-006: contador autorizado no header; busca normalizada com debounce 300 ms e Enter imediato; filtros de cliente, fase, situação, CS, responsável técnico e UF (opções derivadas só do universo autorizado); ver arquivados; limpar filtros; ordenação nome/atualizado/próximo prazo (sem prazo ao final); tabela D2 com cards no mobile; paginação 25/50 — tudo persistido na URL, com voltar/avançar restaurando filtros e página.
+- Verificação automática no preview: Admin vê 1 projeto ativo e 2 com arquivados; busca `?q=vale` e filtro `?cs=Carlos+CS` preservados na URL; projeto B nunca aparece em lista, total ou filtro; "Limpar filtros" restaura a visão ativa. Teste humano aprovado pelo champion ("funcionou", 11:51). SPEC-1-006-CA-01 fechada; a validação formal de CA-02 fica para a F1-22 (dono Thorus).
+- Dívidas marcadas: dados e autorização locais (fixtures C5) até a migration da F1-15 e o binding C3 real; ações por linha e CTA Novo projeto desabilitados (SPEC-1-008/F1-15); perfil "ver como" em store singleton compartilhado entre shell e páginas (removível quando /api/me existir).
+- Próximas dependências: F1-22 (validação da carteira) liberada; F1-15 depende da DÚVIDA do normalized_name; F1-04/F1-14 aguardam B3.
+
 ## 2026-10-21 — F1-05 concluída (shell implementado e testado)
 
 - 2026-10-21 · [Thórus Admin] · Task F1-05 concluída: shell com sidebar, breadcrumb e rotas Dashboard/Projetos implementado no app Skip (v0.0.4, `8ac2ed5`) — QA da plataforma verde (setup/staticAnalysis/build/integrações; suite de testes sem runner no projeto, dívida marcada); preview verificado por automação (navegação, breadcrumb, item ativo, estado vazio) e teste humano aprovado pelo champion ("funcionou"). Fixtures de identidade Admin/CS até /api/me existir (SPEC-1-002); dívidas marcadas no código (tokens D2 por classe arbitrária; Vitest pendente de instalação — package.json é preventAI na plataforma).
@@ -47,13 +55,11 @@
 ## 05/10/2026
 - Escopo v1.2 atualizado com os três fluxos prioritários manuais na Fase 1; adicionadas SPECs verticais 018/019, tasks F1-38 a F1-41 e tasks de integração Legal/WhatsApp para Fase 2.
 
-
 ## 2026-10-01
 
 - Corrigida a estrutura do pacote para o padrão de pasta de cliente do plugin Adapta.
 - SPECs e tasks da Fase 1 alinhadas ao contrato do plugin e às quatro projeções de tasks.
 - Fase 1 definida como interface e banco utilizáveis manualmente; integrações Asana/Drive preparadas e adiadas para Fase 2.
-
 
 ## 2026-10-05
 
@@ -61,7 +67,6 @@
 - Tasks e matriz de rastreabilidade atualizadas com vínculos de aceite específicos e tarefas estáveis.
 - SPECs divididas por rota/fluxo, incluindo administração de usuários, funções/permissões e listas; cada uma cobre interface, comportamento, dados, autorização, persistência e critérios de aceite.
 - Perguntas P1–P10 vinculadas às SPECs relevantes e questionário alinhado: Asana permanece sem integração na Fase 1; conexão prevista para Fase 2.
-
 
 ## 2026-10-05 — Revisão após reunião
 
