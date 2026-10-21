@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-21 — F1-09 concluída (integrações planejadas sem egress)
+
+- Task F1-09 concluída: rota `/configuracoes/integracoes` implementada no app Skip (v0.0.9 `4a80144` → v0.0.12 `5e3355a`) com as primeiras migrations do projeto (0001 coleções `integration_mappings`/`integration_links` com regras Admin-only C4 e versionamento C2; 0002 campo `role` em `users`; 0003 correção de BoolField required que rejeitava `false`). Hooks server-side forçam `enabled=false` na criação, recusam `enabled=true`, campo interno fora da allowlist C2, GID duplicado no mesmo sistema/workspace/tipo e revision obsoleta (conflito de versão C2).
+- Página Admin-only com banner "Conexão prevista para Fase 2", tabelas de mapeamentos e vínculos, diálogos de criação com enum_map de pares, estados D3 completos. Sem botão Conectar/Sincronizar/Testar/Upload e sem campo de token/segredo (CA-03) — verificado por inspeção de botões/inputs e ausência de chamada externa.
+- Provas de API: mapeamento criado com enabled=false forçado; enabled=true recusado; campo protegido recusado; sem token recusado (lista anônima com 0 itens, sem vazamento); revision 2 aceita e revision 1 obsoleta recusada; GID duplicado recusado. Revalidação independente pós-teste confirmou as recusas. Teste humano aprovado pelo champion ("Funcionou", 12:29). SPEC-1-016-CA-01 fechada; CA-02/CA-03 provados na mesma entrega, com validação formal da F1-33 para depois.
+- Dívidas marcadas: project_id texto (fixtures C5) até a F1-15; role admin/cs até a F1-19; auditoria (activity_events) na F1-08; suite Vitest sem runner (preventAI).
+- Próximas dependências: F1-33 liberada (conferir dependência F1-15/DÚVIDA do normalized_name com o consultor); F1-04/F1-14 aguardam B3.
+
 ## 2026-10-21 — F1-06 concluída (carteira com busca, filtros e paginação autorizados)
 
 - Task F1-06 concluída: rota `/projetos` implementada no app Skip (v0.0.5 `91b5d57`, v0.0.6 `2208d5f`, v0.0.7 `7f71374`) sobre fixtures C5 locais (projetos A e B; CS atribuído somente a A; B arquivado como sentinela de vazamento) com autorização local de semântica C4 — o universo autorizado é filtrado antes de busca, filtros, contagem e paginação, e nenhum resultado oculto entra no total. QA da plataforma verde nas três versões (suite de testes sem runner no projeto, dívida mantida).
@@ -21,7 +29,7 @@
 
 ## 2026-10-21 — F1-01 concluída (dicionário de campos aprovado)
 
-- Thórus aprovou o dicionário de campos do cadastro manual (SPEC-1-007-CA-01), registrado em `06_notas/2026-10-21-registro-f1-01-dicionario.md`: o mínimo obrigatório permanece nome + cliente (clients.name 2–160; projects.name 2–160 + client_id); nenhum campo adicional foi tornado obrigatório; nenhum dado pessoal (CPF/CNPJ/endereço/contato pessoal) é obrigatório. Dicionário completo com campo, tipo, obrigatoriedade, permissão e exemplo fictício no registro.
+- Thórus aprovou o dicionário de campos do cadastro manual (SPEC-1-007-CA-01), registrado em `06_notas/2024-10-21-registro-f1-01-dicionario.md`: o mínimo obrigatório permanece nome + cliente (clients.name 2–160; projects.name 2–160 + client_id); nenhum campo adicional foi tornado obrigatório; nenhum dado pessoal (CPF/CNPJ/endereço/contato pessoal) é obrigatório. Dicionário completo com campo, tipo, obrigatoriedade, permissão e exemplo fictício no registro.
 - P1 (projetos/campos do piloto) e P2 (fonte de verdade por campo) registradas formalmente como "ainda não definido": não bloqueiam a Fase 1 manual — P1 bloqueia apenas o mapeamento do piloto/integração e P2 decide a fonte de verdade da Fase 2. Operação manual sem conexão ao Asana confirmada; cópia de dados importados: manter até decisão posterior.
 - Nada foi implementado: task de validação de política, sem código ou migration. F1-15 (formulários) e F1-03 (modelo relacional) passam a usar este dicionário como teto — o que não está nele não pode ser exigido sem emenda de produto.
 
@@ -49,7 +57,7 @@
 
 - Thórus Admin aprovou a matriz-base C4, com a decisão específica para Liderança: `all` somente leitura. P8 confirmado: Admin=all; CS, Engenharia e Legais=assigned; Liderança=all/read-only. Todos os perfis internos podem consultar documentos marcados como liberados ao cliente; portal não será usado neste momento; categorias indicadas: ART, plantas, modelos, memoriais e documentos de aprovação do projeto; não há aprovação individual requerida para a liberação; CS valida o vínculo do contato.
 - P9 confirmado: CS registra o pedido; Engenharia analisa impacto técnico; Engenharia e CS são coaprovadores obrigatórios (não basta qualquer um isoladamente); a definição vigente muda automaticamente após ambas as aprovações, e CS participa da aprovação; avisar CS e Engenharia; não encaminhar ao Comercial por impacto em prazo/preço; CS decide eventual impacto comercial. [Revisado em 2026-10-16: coaprovação substituída por aprovador único designado; CS apenas avisado.]
-- DÚVIDA: o C2/SPEC-1-011 modela um único `decided_by`/`decidedBy`, uma decisão por solicitação e a criação atômica da versão vigente no momento da aprovação. A regra confirmada exige duas aprovações obrigatórias (Engenharia + CS) e atualização automática após ambas as aprovações. Consultor deve definir como representar e auditar as duas aprovações, transições/intermediário e o ponto atômico que cria a versão vigente. Não inferir nem implementar alternativa sem atualização contratual. [Resolvida em 2026-10-16 pela revisão da regra acima.]
+- DÚVIDA: o C2/SPEC-1-011 modela um único `decided_by`/`decidedBy`, uma decisão por solicitação e a criação atômica da versão vigente no momento da aprovação. A regra confirmada exige duas aprovações obrigatórias (Engenharia + CS) e atualização automática após ambas as aprovações. Consultor decide como representar e auditar as duas aprovações, transições/intermediário e o ponto atômico que cria a versão vigente. Não inferir nem implementar alternativa sem atualização contratual. [Resolvida em 2026-10-16 pela revisão da regra acima.]
 - B1 permanece decisão de Produto/Engenharia: runtime, banco, ferramenta de migration/test runner e limite de provisionamento de role ainda não foram identificados no handoff. [Resolvido em 2026-10-16 — ver entrada "Registro do B1" acima.]
 
 ## 05/10/2026
