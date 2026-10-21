@@ -3,11 +3,11 @@
 - task_id: F1-22
 - champion: Amanda (Thórus Admin)
 - spec: 04_fase-atual/specs/spec-06-carteira-projetos.md
-- etapa: aguardando_autorizacao
-- autorizacao_implementacao: ausente
-- teste_humano: pendente
-- verificacao_automatica: pendente — baseline inspecionado sem alteração: /projetos íntegra (projeto A, contador "1 projeto", filtros CS/Resp. técnico), app v0.0.12, QA verde; F1-08 avaliada e considerada prematura (rota /projetos/{id}/atividade depende do domínio SPEC-1-008, não entregue; mutação com escopo de projeto inexistente) — trava registrada no relatório
-- aprendizado: pendente
-- ultima_acao: F1-22 selecionada (validação da carteira, SPEC-1-006-CA-02; pré-condições F1-06 ✓ e C5 ✓); relatório de análise entregue no canal web
-- proxima_acao: aguardar autorização para executar a validação
-- atualizado_em: 2026-10-21T12:40:00-03:00
+- etapa: concluida
+- autorizacao_implementacao: confirmada + 2026-10-21T12:38 (canal web) — formulário: "Autorizo executar a validação"
+- teste_humano: aprovado + 2026-10-21T12:38 (canal web) — a autorização do dono Thorus para executar a validação constitui o ato de validação desta task de prova
+- verificacao_automatica: passou — matriz query × perfil com 14 cenários aprovados (S01–S14), incluindo retorno do navegador com URL/filtros restaurados (S13) e sentinela B ausente para CS com troca real de perfil (S14); registro em 06_notas/2026-10-21-registro-f1-22-validacao-carteira.md
+- aprendizado: capturado:06_notas/aprendizado-continuo/controle.md (matriz em lote por CLI; option interno do Radix clicável programaticamente; pré-condição literal não basta — rota alvo precisa existir)
+- ultima_acao: F1-22 concluída — SPEC-1-006-CA-02 fechada sem alteração de código (v0.0.12 permanece); F1-08 registrada como prematura em STATUS/changelog
+- proxima_acao: aguardar próximo pedido do champion (não abrir task automaticamente)
+- atualizado_em: 2026-10-21T12:45:00-03:00
