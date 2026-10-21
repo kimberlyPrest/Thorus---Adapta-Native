@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-10-21 — F1-22 concluída (validação da carteira) + F1-08 registrada como prematura
+
+- Task F1-22 concluída sem alteração de código (app permanece v0.0.12 `5e3355a`): matriz query × perfil com 14 cenários aprovados (S01–S14) sobre a carteira `/projetos` — busca com normalização (VALE/vale), filtros individuais e combinados (AND), arquivados, paginação 25/50, ordenação, clamp de página inexistente, sentinela de vazamento (projeto B ausente para CS em lista, total e opções) e retorno do navegador restaurando URL/filtros/página (S13, CA-02 literal). A troca real de perfil via seletor "ver como" — lacuna de prova deixada na F1-06 — foi exercitada com sucesso (S14). Registro em `06_notas/2026-10-21-registro-f1-22-validacao-carteira.md`. SPEC-1-006-CA-02 fechada.
+- F1-08 (atividade/auditoria, SPEC-1-014) foi avaliada e considerada **prematura**: a rota `/projetos/{id}/atividade` depende do domínio da SPEC-1-008 (abas do projeto, não entregue) e nenhuma mutação com escopo de projeto existe ainda — a timeline só teria eventos de fixture. A task volta a ser elegível após a SPEC-1-008/F1-24.
+- Próximas dependências: F1-33 é a próxima candidata (conferir F1-15/DÚVIDA do normalized_name com o consultor); F1-04/F1-14 aguardam B3; F1-07/F1-12 aguardam P5; F1-13 aguarda P3.
+
 ## 2026-10-21 — F1-09 concluída (integrações planejadas sem egress)
 
 - Task F1-09 concluída: rota `/configuracoes/integracoes` implementada no app Skip (v0.0.9 `4a80144` → v0.0.12 `5e3355a`) com as primeiras migrations do projeto (0001 coleções `integration_mappings`/`integration_links` com regras Admin-only C4 e versionamento C2; 0002 campo `role` em `users`; 0003 correção de BoolField required que rejeitava `false`). Hooks server-side forçam `enabled=false` na criação, recusam `enabled=true`, campo interno fora da allowlist C2, GID duplicado no mesmo sistema/workspace/tipo e revision obsoleta (conflito de versão C2).
@@ -12,14 +18,13 @@
 
 - Task F1-06 concluída: rota `/projetos` implementada no app Skip (v0.0.5 `91b5d57`, v0.0.6 `2208d5f`, v0.0.7 `7f71374`) sobre fixtures C5 locais (projetos A e B; CS atribuído somente a A; B arquivado como sentinela de vazamento) com autorização local de semântica C4 — o universo autorizado é filtrado antes de busca, filtros, contagem e paginação, e nenhum resultado oculto entra no total. QA da plataforma verde nas três versões (suite de testes sem runner no projeto, dívida mantida).
 - Página conforme a SPEC-1-006: contador autorizado no header; busca normalizada com debounce 300 ms e Enter imediato; filtros de cliente, fase, situação, CS, responsável técnico e UF (opções derivadas só do universo autorizado); ver arquivados; limpar filtros; ordenação nome/atualizado/próximo prazo (sem prazo ao final); tabela D2 com cards no mobile; paginação 25/50 — tudo persistido na URL, com voltar/avançar restaurando filtros e página.
-- Verificação automática no preview: Admin vê 1 projeto ativo e 2 com arquivados; busca `?q=vale` e filtro `?cs=Carlos+CS` preservados na URL; projeto B nunca aparece em lista, total ou filtro; "Limpar filtros" restaura a visão ativa. Teste humano aprovado pelo champion ("funcionou", 11:51). SPEC-1-006-CA-01 fechada; a validação formal de CA-02 fica para a F1-22 (dono Thorus).
+- Verificação automática no preview: Admin vê 1 projeto ativo e 2 com arquivados; busca `?q=vale` e filtro `?cs=Carlos+CS` preservados na URL; projeto B nunca aparece em lista, total ou filtro; "Limpar filtros" restaura a visão ativa. Teste humano aprovado pelo champion ("funcionou", 11:51). SPEC-1-006-CA-01 fechada; a validação formal de CA-02 ficou para a F1-22 (concluída acima).
 - Dívidas marcadas: dados e autorização locais (fixtures C5) até a migration da F1-15 e o binding C3 real; ações por linha e CTA Novo projeto desabilitados (SPEC-1-008/F1-15); perfil "ver como" em store singleton compartilhado entre shell e páginas (removível quando /api/me existir).
-- Próximas dependências: F1-22 (validação da carteira) liberada; F1-15 depende da DÚVIDA do normalized_name; F1-04/F1-14 aguardam B3.
 
 ## 2026-10-21 — F1-05 concluída (shell implementado e testado)
 
 - 2026-10-21 · [Thórus Admin] · Task F1-05 concluída: shell com sidebar, breadcrumb e rotas Dashboard/Projetos implementado no app Skip (v0.0.4, `8ac2ed5`) — QA da plataforma verde (setup/staticAnalysis/build/integrações; suite de testes sem runner no projeto, dívida marcada); preview verificado por automação (navegação, breadcrumb, item ativo, estado vazio) e teste humano aprovado pelo champion ("funcionou"). Fixtures de identidade Admin/CS até /api/me existir (SPEC-1-002); dívidas marcadas no código (tokens D2 por classe arbitrária; Vitest pendente de instalação — package.json é preventAI na plataforma).
-- Próximas dependências: F1-06 (carteira) é a próxima candidata; F1-15 depende da DÚVIDA do normalized_name; F1-04/F1-14 aguardam B3.
+- Próximas dependências: F1-06 (carteira) era a próxima candidata — concluída; F1-15 depende da DÚVIDA do normalized_name; F1-04/F1-14 aguardam B3.
 
 ## 2026-10-21 — F1-03 concluída (modelo relacional aprovado) + DÚVIDA de unicidade
 
@@ -29,7 +34,7 @@
 
 ## 2026-10-21 — F1-01 concluída (dicionário de campos aprovado)
 
-- Thórus aprovou o dicionário de campos do cadastro manual (SPEC-1-007-CA-01), registrado em `06_notas/2024-10-21-registro-f1-01-dicionario.md`: o mínimo obrigatório permanece nome + cliente (clients.name 2–160; projects.name 2–160 + client_id); nenhum campo adicional foi tornado obrigatório; nenhum dado pessoal (CPF/CNPJ/endereço/contato pessoal) é obrigatório. Dicionário completo com campo, tipo, obrigatoriedade, permissão e exemplo fictício no registro.
+- Thórus aprovou o dicionário de campos do cadastro manual (SPEC-1-007-CA-01), registrado em `06_notas/2026-10-21-registro-f1-01-dicionario.md`: o mínimo obrigatório permanece nome + cliente (clients.name 2–160; projects.name 2–160 + client_id); nenhum campo adicional foi tornado obrigatório; nenhum dado pessoal (CPF/CNPJ/endereço/contato pessoal) é obrigatório. Dicionário completo com campo, tipo, obrigatoriedade, permissão e exemplo fictício no registro.
 - P1 (projetos/campos do piloto) e P2 (fonte de verdade por campo) registradas formalmente como "ainda não definido": não bloqueiam a Fase 1 manual — P1 bloqueia apenas o mapeamento do piloto/integração e P2 decide a fonte de verdade da Fase 2. Operação manual sem conexão ao Asana confirmada; cópia de dados importados: manter até decisão posterior.
 - Nada foi implementado: task de validação de política, sem código ou migration. F1-15 (formulários) e F1-03 (modelo relacional) passam a usar este dicionário como teto — o que não está nele não pode ser exigido sem emenda de produto.
 
@@ -57,7 +62,7 @@
 
 - Thórus Admin aprovou a matriz-base C4, com a decisão específica para Liderança: `all` somente leitura. P8 confirmado: Admin=all; CS, Engenharia e Legais=assigned; Liderança=all/read-only. Todos os perfis internos podem consultar documentos marcados como liberados ao cliente; portal não será usado neste momento; categorias indicadas: ART, plantas, modelos, memoriais e documentos de aprovação do projeto; não há aprovação individual requerida para a liberação; CS valida o vínculo do contato.
 - P9 confirmado: CS registra o pedido; Engenharia analisa impacto técnico; Engenharia e CS são coaprovadores obrigatórios (não basta qualquer um isoladamente); a definição vigente muda automaticamente após ambas as aprovações, e CS participa da aprovação; avisar CS e Engenharia; não encaminhar ao Comercial por impacto em prazo/preço; CS decide eventual impacto comercial. [Revisado em 2026-10-16: coaprovação substituída por aprovador único designado; CS apenas avisado.]
-- DÚVIDA: o C2/SPEC-1-011 modela um único `decided_by`/`decidedBy`, uma decisão por solicitação e a criação atômica da versão vigente no momento da aprovação. A regra confirmada exige duas aprovações obrigatórias (Engenharia + CS) e atualização automática após ambas as aprovações. Consultor decide como representar e auditar as duas aprovações, transições/intermediário e o ponto atômico que cria a versão vigente. Não inferir nem implementar alternativa sem atualização contratual. [Resolvida em 2026-10-16 pela revisão da regra acima.]
+- DÚVIDA: o C2/SPEC-1-011 modela um único `decided_by`/`decidedBy`, uma decisão por solicitação e a criação atômica da versão vigente no momento da aprovação. A regra confirmada exige duas aprovações obrigatórias (Engenharia + CS) e atualização automática após ambas as aprovações. Consultor deve definir como representar e auditar as duas aprovações, transições/intermediário e o ponto atômico que cria a versão vigente. Não inferir nem implementar alternativa sem atualização contratual. [Resolvida em 2026-10-16 pela revisão da regra acima.]
 - B1 permanece decisão de Produto/Engenharia: runtime, banco, ferramenta de migration/test runner e limite de provisionamento de role ainda não foram identificados no handoff. [Resolvido em 2026-10-16 — ver entrada "Registro do B1" acima.]
 
 ## 05/10/2026
