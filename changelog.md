@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-10-21 — F1-05 concluída (shell implementado e testado)
+
+- 2026-10-21 · [Thórus Admin] · Task F1-05 concluída: shell com sidebar, breadcrumb e rotas Dashboard/Projetos implementado no app Skip (v0.0.4, `8ac2ed5`) — QA da plataforma verde (setup/staticAnalysis/build/integrações; suite de testes sem runner no projeto, dívida marcada); preview verificado por automação (navegação, breadcrumb, item ativo, estado vazio) e teste humano aprovado pelo champion ("funcionou"). Fixtures de identidade Admin/CS até /api/me existir (SPEC-1-002); dívidas marcadas no código (tokens D2 por classe arbitrária; Vitest pendente de instalação — package.json é preventAI na plataforma).
+- Próximas dependências: F1-06 (carteira) é a próxima candidata; F1-15 depende da DÚVIDA do normalized_name; F1-04/F1-14 aguardam B3.
+
 ## 2026-10-21 — F1-03 concluída (modelo relacional aprovado) + DÚVIDA de unicidade
 
 - Thórus aprovou o modelo relacional de clients/projects para migração (SPEC-1-007-CA-02), registrado em `06_notas/2026-10-21-registro-f1-03-modelo-relacional.md`: versionamento C2 confirmado (`version` inteiro inicial 1; `created_at`/`created_by`/`updated_at`); FKs de histórico com RESTRICT, sem cascade; unicidade de `projects.code` quando preenchido (trim/maiúscula, ≤30) e de `clients.normalized_name`; `projects.name` sem unicidade; índices de consulta por client_id, phase_option_id, status_option_id, archived_at e normalized_name; provisionamento por migration versionada em `pocketbase/migrations/` (padrão B1), sem alterar o app Skip fora de task autorizada.
