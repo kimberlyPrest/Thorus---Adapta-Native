@@ -3,11 +3,12 @@
 - task_id: F1-08
 - champion: Amanda (Thórus Admin)
 - spec: 04_fase-atual/specs/spec-14-atividade-auditoria.md
-- etapa: aguardando_teste_humano
-- autorizacao_implementacao: confirmada + 2026-10-22T15:13 (canal web) — formulário: "Autorizo implementar o plano"
-- teste_humano: pendente — roteiro enviado em 2026-10-22T15:30 (canal web)
-- verificacao_automatica: passou — QA verde v0.0.21 2c1a59a → v0.0.25 06290ca (test ran:false — runner ausente, dívida mantida); migration 0007 aplicada (índice project_id+created em activity_events, coleção idempotency_keys, fixture C5 do evento admin_profiles); rotas provadas por API: lista Admin (2 eventos, filtros resource/actor/data funcionando, total filtrado), CA-03 (CS sem read de admin_profiles não vê o evento — total 1, só projects; detalhe do evento admin → 404 genérico), detalhe seguro (changedFields, sem payload integral), Idempotency-Key no PUT team (1ª execução version 8, replay flag true devolvendo a mesma versão, sem duplicata); evento do PUT team agora grava project_id (escopo da aba); fluxo de UI exercitado: timeline com 2 eventos agrupados por dia, filtro ?resource=projects na URL (1 evento), drawer de detalhe seguro aberto
-- aprendizado: pendente
-- ultima_acao: F1-08 implementada e verificada (3 bugs corrigidos em revisão: findFirstRecordByFilter lança "no rows" sem try/catch; evento do PUT team sem project_id; import duplicado de Link); aguardando teste humano
-- proxima_acao: aguardar confirmação do teste humano (não concluir nem iniciar outra task antes)
-- atualizado_em: 2026-10-22T15:30:00-03:00
+- etapa: concluida
+- autorizacao_implementacao: confirmada 2026-10-22T15:13 (canal web) — formulário: "Autorizo implementar o plano"
+- teste_humano: aprovado 2026-10-22T15:34 (canal web) — formulário: "Funcionou"
+- verificacao_final: passou — 5 provas de API reprovadas do zero (logins novos): lista Admin 200; CS membro vê só projects (CA-03); filtro admin_profiles do CS não vaza; anônimo 401; PUT versão obsoleta + chave nova → 409 sem consumir chave. QA verde v0.0.21 2c1a59a → v0.0.25 06290ca.
+- fechamento: fase.md F1-08 → Concluída (2026-10-22) — commit 3ee73de6 (21005 bytes, 41 tasks, validado byte a byte; incidente 4 de truncamento corrigido — ver controle.md); changelog 74f6884d; STATUS 2e50bed7; controle.md (aprendizados JSVM + incidente 4).
+- aprendizado: registrado (2 linhas em 06_notas/aprendizado-continuo/controle.md)
+- ultima_acao: fechamento documental completo da F1-08
+- proxima_acao: sem_task — próximas candidatas: F1-30 (elegível, depende F1-08 ✓ + F1-22 ✓) e F1-33 (conferir F1-15/DÚVIDA do normalized_name com o consultor antes de selecionar)
+- atualizado_em: 2026-10-22T15:58:00-03:00
