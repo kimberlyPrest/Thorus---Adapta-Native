@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-22 — F1-19 concluída (matriz de permissões em servidor)
+
+- Task F1-19 concluída: matriz de permissões governada por `policy_version` em servidor (SPEC-1-004-CA-02) no app Skip (v0.0.13 `e8d372e` → v0.0.14 `f0edc9b` → v0.0.15 `6ae862f`). Migration 0004 cria coleções `roles`, `role_permissions` (UNIQUE role+resource+action), `policy_state` e `activity_events` (append-only, sem create/update/delete via API); migration 0005 semeia a matriz assinada na F1-02 de forma idempotente (Admin 36, CS 13, Engenharia 10, Legais 6, Liderança 7 grants). Rotas Admin-only `/backend/v1/admin/roles` (GET), `.../permissions/preview` (POST) e `.../permissions` (PUT): preview calcula delta e usuários afetados sem gravar; salvar substitui grants, incrementa `policy_version` e grava evento de auditoria na mesma transação (primeira entrega C3). Validações: motivo 3–500 obrigatório, write exige read (C4), célula administrativa do Admin fixa, conflito de policy_version **409**.
+- Página `/configuracoes/perfis` com gate pelo **auth real** (não pelo seletor de demonstração — gap encontrado e corrigido durante a verificação), abas por perfil, matriz papel × ação × escopo, "Revisar e salvar" com motivo obrigatório, tratamento de 409, células administrativas fixas e "Restaurar base do piloto".
+- Provas de API reprovadas do zero na verificação independente pós-teste: preview==delta salvo; salvar incrementa policy_version (1→2); reenvio com versão obsoleta recusado (409 real no transporte após correção — antes 400, divergência de contrato corrigida em revisão); write sem read recusado; motivo curto recusado; CS e anônimo 403; evento de auditoria gravado; matriz do CS restaurada à base assinada (policy 4, `tasks:complete` de volta). QA da plataforma verde nas três versões (suite Vitest sem runner, dívida mantida). Teste humano aprovado pelo champion ("Funcionou", 2026-10-22).
+- Dívidas: affected_users=1 até provisionamento por usuário (F1-14/F1-18); suite Vitest sem runner (preventAI). A dívida "role admin/cs" da F1-09 é fechada por esta entrega (campo `role` de `users` agora governado pelas coleções de permissões).
+- Próximas dependências: F1-33 (conferir F1-15/DÚVIDA do normalized_name com o consultor); F1-15 depende da DÚVIDA; F1-04/F1-14 aguardam B3; F1-07/F1-12 aguardam P5; F1-13 aguarda P3.
+
 ## 2026-10-21 — F1-22 concluída (validação da carteira) + F1-08 registrada como prematura
 
 - Task F1-22 concluída sem alteração de código (app permanece v0.0.12 `5e3355a`): matriz query × perfil com 14 cenários aprovados (S01–S14) sobre a carteira `/projetos` — busca com normalização (VALE/vale), filtros individuais e combinados (AND), arquivados, paginação 25/50, ordenação, clamp de página inexistente, sentinela de vazamento (projeto B ausente para CS em lista, total e opções) e retorno do navegador restaurando URL/filtros/página (S13, CA-02 literal). A troca real de perfil via seletor "ver como" — lacuna de prova deixada na F1-06 — foi exercitada com sucesso (S14). Registro em `06_notas/2026-10-21-registro-f1-22-validacao-carteira.md`. SPEC-1-006-CA-02 fechada.
@@ -43,7 +51,7 @@
 - Thórus Admin validou e assinou a matriz papel × ação × escopo (SPEC-1-004-CA-01), fechando a F1-02. Matriz aprovada: Admin=all; CS, Engenharia e Legais=assigned; Liderança=all somente leitura; recursos/ações conforme C4 (projects, tasks, definitions, legal_events, documents, activity, dashboard, admin_*, client_requests, customer_updates); regras de composição confirmadas (ausência de grant nega; escrita exige read + projects.read; um perfil por usuário; aprovação técnica exige designação por projeto/disciplina); casos permitido/negado definidos.
 - Verificação automática (documental) passou: critérios conferidos contra SPEC-1-004, contrato C4 e registro B1 (06_notas/2026-10-16-registro-b1.md). Nenhuma implementação técnica ocorreu — F1-02 é validação de política.
 - Aprendizado registrado em 06_notas/aprendizado-continuo/controle.md.
-- Próximas dependências: F1-19 (implementar matriz) planejável após runtime provisionado; F1-04/F1-14 seguem bloqueadas por B3 (método de autenticação corporativa — decisão Thórus Admin + Engenharia).
+- Próximas dependências: F1-19 (implementar matriz) planejável após runtime provisionado; F1-04 e F1-14 seguem bloqueadas por B3 (método de autenticação corporativa — decisão Thórus Admin + Engenharia).
 
 ## 2026-10-16 — Registro do B1 (decisões técnicas de fundação)
 
