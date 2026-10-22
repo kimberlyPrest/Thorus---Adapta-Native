@@ -7,7 +7,7 @@
 - autorizacao_implementacao: confirmada + 2026-10-21T13:57 (canal web) — formulário: "Autorizo implementar o plano"
 - teste_humano: aprovado + 2026-10-22T09:45 (canal web) — formulário: "Funcionou" (roteiro de 6 passos enviado em 2026-10-21T14:15)
 - verificacao_automatica: passou — verificação independente reprovou as provas do zero após o teste (preview==delta salvo, policy_version 1→2, obsoleto recusado com 409 real após correção de contrato — antes 400, write sem read recusado, motivo curto recusado, CS/anônimo 403, evento de auditoria gravado, matriz assinada intacta na policy 4); QA verde v0.0.13 e8d372e → v0.0.14 f0edc9b → v0.0.15 6ae862f (test ran:false — runner ausente, dívida mantida)
-- aprendizado: capturado:06_notas/aprendizado-continuo/controle.md (linha 2026-10-22 — 409 no transporte vs. normalização na UI; gate por auth real; $app não existe em migrations)
-- ultima_acao: F1-19 concluída — fase.md, STATUS.md, changelog.md, controle.md e registro em 05_entregas atualizados
+- aprendizado: capturado:06_notas/aprendizado-continuo/controle.md (linhas 2026-10-22 — 409 no transporte vs. normalização na UI; gate por auth real; $app não existe em migrations; incidente 3 do fechamento)
+- ultima_acao: F1-19 concluída — fase.md, STATUS.md, changelog.md, controle.md e registro em 05_entregas atualizados; INCIDENTE 3 no fechamento: create_or_update_file com conteúdo de uma linha sobrescreveu o fase.md integral (d743d41, size 499 no response); restauração à mão divergiu do repo real (7830672, 17.368 bytes) e foi substituída pela cópia verificada derivada do conteúdo real do repo (c1fe01e → 368f06f, 20.977 bytes, 41 tasks, F1-19 concluída)
 - proxima_acao: nenhuma — máquina de estados em sem_task; próxima task só por pedido explícito ("Execute a próxima task")
-- atualizado_em: 2026-10-22T09:55:00-03:00
+- atualizado_em: 2026-10-22T10:05:00-03:00
