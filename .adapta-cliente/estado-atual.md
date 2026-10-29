@@ -1,16 +1,13 @@
 # Estado atual — Adapta Cliente
 
-- task_id: F1-16
+- task_id: (nenhuma)
 - champion: Amanda (Thórus Admin)
-- spec: 04_fase-atual/specs/spec-01-layout-navegacao.md
-- etapa: aguardando_teste_humano
-- autorizacao_implementacao: confirmada 2026-10-29T09:40 (canal web) — formulário: "Autorizo implementar o plano" com escopo "Todas as páginas entregues"
-- teste_humano: pendente (reaberto) — 1ª resposta do champion em 2026-10-29T11:52: "Não consegui acessar com login e senha passados". Diagnóstico em duas etapas: (a) preview fora do ar no momento (HTTP 522/timeout; backend 200 em 0,04 s; credenciais íntegras via auth-with-password); (b) CAUSA RAIZ REAL encontrada no código: `src/pages/Index.tsx` redirecionava para `window.location.href = '/'` após login, mas `/` é a própria rota da tela de login (App.tsx) — o usuário autenticava, via "Sessão ativa / Sair" e permanecia preso na tela de entrada. CORRIGIDO em v0.0.30 `a2af39e` para `/dashboard`. Prova de ponta a ponta em 2026-10-29T13:35: logout → login admin@thorus.demo / Thorus2026! → URL final `/dashboard` com shell autenticado. Roteiro de 6 passos permanece válido para o reteste.
-- teste_humano_roteiro: 6 passos (cor primária teal; consistência entre as 8 páginas incluindo login; tipografia system-ui; skip-link + anel de foco por Tab; responsivo 375/768 com drawer devolvendo foco; alerta de erro em vermelho-tijolo)
-- verificacao_automatica: passou — QA verde v0.0.30 `a2af39e` (setup/static/build/integrações; test ran:false — runner ausente, dívida mantida). F1-16 v0.0.29 `4bf7a5f` + correção v0.0.30. Tokens D2 em `src/main.css` (`--primary` 175 77% 26% = #0F766E, `--primary-hover` #115E59, `--ring` #0F766E, `--border` #CBD5E1, `--border-soft` #E2E8F0, `--muted-foreground` #475569, `--muted-soft` #94A3B8, `--destructive` #B91C1C + soft/border, `--success`/`--success-soft`/`--success-border`, `--warning`, `--info` + soft/border) mapeados em `tailwind.config.ts`; tipografia system-ui (import do Google Fonts removido). Hex literais: 266 em 17 cores → 0 nos 7 arquivos do shell/páginas; a tela de login (`Index.tsx`, 8º arquivo, inicialmente fora do escopo por omissão) também tokenizada e sem hex, incluindo `#2563EB` azul residual. Skip-link "Pular para o conteúdo" + `main#conteudo-principal tabIndex=-1`. Prova visual: shell autenticado com tokens aplicados.
-- bug_corrigido: `Index.tsx` redirecionava para `'/'` (a própria tela de login) em vez de `/dashboard` — bloqueava TODO acesso ao app após autenticar. Encontrado por reprodução própria do fluxo de login, não pelo relato inicial (que apontava falha de credenciais).
-- incidente_operacional: conector Skip desapareceu da busca de ferramentas 3 vezes em 2 dias (2026-10-28 e 2026-10-29 x2); resolve com busca específica/`request_connectors`. Preview do Skip também ficou indisponível (522) por ~1h40 em 2026-10-29.
-- aprendizado: gravado — (1) ao receber "não consigo acessar", separar indisponibilidade de infraestrutura de defeito de código testando credencial direto na API e depois reproduzindo o fluxo no navegador; (2) ao auditar tokens D2, enumerar TODAS as rotas de `App.tsx`, incluindo a tela de login, e não só a lista de páginas com shell.
-- ultima_acao: corrigido o redirecionamento pós-login e tokenizada a tela de entrada; QA verde v0.0.30; login provado de ponta a ponta até `/dashboard`
-- proxima_acao: aguardar reteste humano dos 6 passos. NÃO concluir a F1-16 nem iniciar a próxima task antes da confirmação.
+- spec: —
+- etapa: sem_task
+- autorizacao_implementacao: —
+- teste_humano: F1-16 aprovada pelo champion com "Funcionou" em 2026-10-29, no reteste após a correção de acesso. Primeiro retorno havia sido "Não funcionou" por não conseguir acessar; causa raiz era redirecionamento pós-login para `'/'` (a própria tela de login), corrigido em v0.0.30.
+- verificacao_automatica: QA verde em v0.0.29 `4bf7a5f` e v0.0.30 `a2af39e` (setup/static/build/integrações; `test ran:false` — runner Vitest indisponível, `preventAI`). Prova de ponta a ponta do login: logout → login → `/dashboard` autenticado.
+- tarefa_concluida: F1-16 — design system, estados base, teclado e responsividade (SPEC-1-001-CA-02), 12/41 (~29%). Tokens D2 no tema; tipografia system-ui; 266 hex → 0 em 8 arquivos (incluindo a tela de login); skip-link + `main` focalizável; bug de acesso corrigido. Registro em `06_notas/2026-10-29-registro-f1-16-design-system.md`.
+- aprendizado: registrado em `06_notas/aprendizado-continuo/controle.md` (2026-10-29): diagnóstico de "não consigo acessar" em 3 camadas e auditoria de tokens por todas as rotas de App.tsx.
+- proxima_acao: nenhuma task elegível sem dependência externa. Pendências que travam o restante: DÚVIDA do normalized_name (F1-15/F1-33, decisão do consultor); B3 de auth corporativa (F1-04, F1-14, F1-17); P5 (F1-07, F1-12, F1-25, F1-28); P3 (F1-13, F1-29); SPEC-1-010 inexistente (F1-11, F1-26, F1-27, F1-36); F1-10/F1-34/F1-35 exigem todas as SPECs 001–016. Aguardar decisão do champion sobre qual pendência destravar.
 - atualizado_em: 2026-10-29T13:40:00-03:00
